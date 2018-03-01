@@ -1,0 +1,573 @@
+<configuration>
+  <modules>
+
+    <module name="click-ns-3.17">
+      <source type="git">
+        <attribute name="url" value="git://github.com/kohler/click.git"/>
+        <attribute name="revision" value="056d2c0a75baaf196fca2622ff9eb80f28038bc0"/>
+      </source>
+      <build type="autotools" objdir="yes">
+        <attribute name="configure_arguments" value="../configure --prefix=$INSTALLDIR --exec-prefix=$INSTALLDIR -enable-userlevel --disable-linuxmodule --enable-nsclick --enable-wifi"/>
+        <attribute name="post_installation" value="mkdir $INSTALLDIR/lib; cp -r $OBJDIR/include $INSTALLDIR/lib/."/> 
+      </build>
+    </module>
+
+    <module name="clang-dev">
+      <source type="system_dependency">
+        <attribute name="dependency_test" value="ia32intrin.h"/>
+        <attribute name="name_yum" value="libclang-devel"/>
+        <attribute name="name_apt-get" value="libclang-dev"/>
+        <attribute name="more_information" value="Didn't find:   the clang-dev library, try to install it!"/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+    <module name="libxml2-dev">
+      <source type="system_dependency">
+        <attribute name="dependency_test" value="xmlIO.h"/>
+        <attribute name="name_yum" value="libxml2-devel"/>
+        <attribute name="name_yast" value="libxml2-devel"/>
+        <attribute name="name_apt-get" value="libxml2-dev"/>
+        <attribute name="more_information" value="Didn't find:   the libxml2-dev library, try to install it!"/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+    <module name="openflow-jpelkey">
+      <source type="mercurial">
+        <attribute name="url" value="http://code.nsnam.org/jpelkey3/openflow"/>
+      </source>
+      <build type="waf" objdir="yes">
+        <attribute name="configure_arguments" value="configure --prefix=$INSTALLDIR"/>
+        <attribute name="no_installation" value="True"/>
+
+        <!-- It complains if the lib directory exists, so I am removing the lib directory. Another 
+             thing is that it try to install things by default, so the instalation is not required-->
+        
+        <attribute name="pre_installation" value="mv $INSTALLDIR/lib $INSTALLDIR/libTmp"/>
+        <attribute name="post_installation" value="mkdir $INSTALLDIR/lib; mv $INSTALLDIR/libTmp/* $INSTALLDIR/lib/.; rm -rf $INSTALLDIR/libTmp" />
+      </build>
+        <depends_on name="libxml2-dev" optional="False"/>
+    </module>
+
+    <module name="openflow-dev">
+      <source type="mercurial">
+        <attribute name="url" value="http://code.nsnam.org/openflow"/>
+      </source>
+      <build type="waf" objdir="yes">
+        <attribute name="configure_arguments" value="configure --prefix=$INSTALLDIR"/>
+      </build>
+        <depends_on name="libxml2-dev" optional="False"/>
+    </module>
+
+    <module name="openflow-ns-3.17">
+      <source type="mercurial">
+        <attribute name="url" value="http://code.nsnam.org/openflow"/>
+        <attribute name="revision" value="bb2869a6bbe1"/>
+      </source>
+      <build type="waf" objdir="yes">
+        <attribute name="configure_arguments" value="configure --prefix=$INSTALLDIR"/>
+      </build>
+        <depends_on name="libxml2-dev" optional="False"/>
+    </module>
+
+    <module name="castxml">
+      <source type="git">
+        <attribute name="url" value="https://github.com/CastXML/CastXML.git"/>
+      </source>
+      <build type="cmake" objdir="yes">
+        <attribute name="pre_installation" value="mkdir -p $INSTALLDIR/bin"/>
+      </build>
+      <depends_on name="clang-dev" optional="False"/>
+    </module>
+
+    <module name="python-dev">
+      <source type="system_dependency">
+        <attribute name="dependency_test" value="Python.h"/>
+        <attribute name="name_apt-get" value="python-dev"/>
+        <attribute name="name_yum" value="python-devel"/>
+        <attribute name="more_information" value="The python-dev is not installed, try to install it."/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+    <module name="pygraphviz">
+      <source type="system_dependency">
+        <attribute name="dependency_test" value="(_gv.so or _graphviz.so or _graphviz.x86_64-linux-gnu.so)"/>
+        <attribute name="name_apt-get" value="python-pygraphviz"/>
+        <attribute name="name_yum" value="graphviz-python"/>
+        <attribute name="name_yum" value="py27-pygraphviz"/> 
+        <attribute name="more_information" value="The pygraphviz is not installed, try to install it."/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+    <module name="pygoocanvas">
+      <source type="system_dependency">
+        <attribute name="dependency_test" value="goocanvasmodule.so or libgoocanvas.a"/>
+        <attribute name="name_apt-get" value="python-pygoocanvas"/>
+        <attribute name="name_yum" value="pygoocanvas"/>
+        <attribute name="name_port" value="pygoocanvas"/>
+        <attribute name="more_information" value="The pygoocanvas is not installed, try to install it."/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+    <module name="setuptools">
+      <source type="system_dependency">
+        <attribute name="dependency_test" value="easy_install"/>
+        <attribute name="name_apt-get" value="python-setuptools"/>
+        <attribute name="name_yum" value="python-setuptools"/>
+        <attribute name="name_port" value="py-setuptools"/>
+        <attribute name="more_information" value="The python-setuptools package is not installed, try to install it."/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+    <module name="pyviz-prerequisites">
+      <source type="none">
+      </source>
+      <depends_on name="python-dev" optional="True"/>
+      <depends_on name="pygraphviz" optional="True"/>
+      <depends_on name="pygoocanvas" optional="True"/>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+
+    <module name="pybindgen-0.15.0.809">
+      <source type="archive">
+        <attribute name="url" value="file:///workspace/bake/pybindgen-0.15.0.809.tar.bz2"/>
+        <attribute name="extract_directory" value="pybindgen-0.15.0.809"/>
+      </source>
+
+      <build type="python" objdir="yes">
+      </build>
+      <depends_on name="python-dev" optional="True"/>
+      <depends_on name="setuptools" optional="False"/>
+    </module>
+
+
+    <module name="g++">
+      <source type="system_dependency">
+        <attribute name="dependency_test" value="g\+\+"/>
+        <attribute name="more_information" value="g++ is not installed, try to install it or talk to your system administrator"/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+    <module name="nsc-dev">
+      <source type="mercurial">
+        <attribute name="url" value="https://secure.wand.net.nz/mercurial/nsc"/>
+      </source>
+      <!-- problem: scons has no generic command-line support for builddir and installdir -->
+      <build type="inline"  classname="NscModuleBuild">
+        <attribute name="supported_os" value="linux;linux2"/>
+        <code>class NscModuleBuild(InlineModuleBuild):
+    def __init__(self):
+        InlineModuleBuild.__init__(self)
+    def build(self, env, jobs):
+        import os
+        import shutil
+
+        jobstr=[]
+        if not jobs == -1:
+            jobstr = ['-j', str(jobs)]
+        env.run(['python', os.path.join(env.srcdir, 'scons.py'), 
+                 'prefix=' + env.installdir, 'install'] + jobstr,
+                directory=env.srcdir )
+        srcLib = os.path.join(env.srcdir, 'lib')
+        files = os.listdir(srcLib)
+        env._logger.commands.write("LibDir: " + srcLib +"\n")
+        destination = os.path.join(env.installdir, 'lib')
+        env._logger.commands.write("DstDir: " + destination +"\n")
+        if not os.path.exists(destination):
+            os.makedirs(destination)
+        for file in files:
+             env._logger.commands.write(file + "->" + destination +"\n")
+             try:
+                 shutil.copy2(os.path.join(srcLib, file), destination)
+             except Exception as e:
+                 print ("   > Error executing copy : " + str(e) + "\n")
+       
+    def clean(self, env):
+        env.run(['python', os.path.join(env.srcdir, 'scons.py'), '-c'],
+                directory=env.srcdir)
+    def check_version(self, env):
+        return True</code>
+      </build>
+    </module>
+    
+   <module name="nsc-0.5.3">
+      <source type="archive">
+        <attribute name="url" value="file:///workspace/bake/nsc-0.5.3.tar.bz2"/>
+        <attribute name="extract_directory" value="nsc-0.5.3"/>
+      </source>
+
+      <!-- problem: scons has no generic command-line support for builddir and installdir -->
+      <build type="inline"  classname="NscModuleBuild">
+        <attribute name="supported_os" value="linux;linux2"/>
+        <code>class NscModuleBuild(InlineModuleBuild):
+    def __init__(self):
+        InlineModuleBuild.__init__(self)
+    def build(self, env, jobs):
+        import os
+        import shutil
+
+        jobstr=[]
+        if not jobs == -1:
+            jobstr = ['-j', str(jobs)]
+        env.run(['python', os.path.join(env.srcdir, 'scons.py'),
+                 'prefix=' + env.installdir, 'install'] + jobstr,
+                directory=env.srcdir )
+        srcLib = os.path.join(env.srcdir, 'lib')
+        env._logger.commands.write("LibDir: " + srcLib +"\n")
+        destination = os.path.join(env.installdir, 'lib')
+        env._logger.commands.write("DstDir: " + destination +"\n")
+        if not os.path.exists(destination):
+            os.makedirs(destination)
+        files = os.listdir(srcLib)
+        env._logger.commands.write("Files:"+str(files)+"\n")
+        for file in files:
+             env._logger.commands.write(file + "->" + destination +"\n")
+             try:
+                 shutil.copy2(os.path.join(srcLib, file), destination)
+             except Exception as e:
+                 print ("   > Error executing copy : " + str(e) + "\n")
+       
+    def clean(self, env):
+        env.run(['python', os.path.join(env.srcdir, 'scons.py'), '-c'],
+                directory=env.srcdir)
+    def check_version(self, env):
+        return True</code>
+      </build>
+    </module>
+
+    <module name="qt">
+      <source type="system_dependency">
+        <attribute name="dependency_test" value="qobject.h and qapplication.h and (qmake or qmake-qt4 or qmake-qt5)"/>
+        <attribute name="name_yum" value="qt5-devel"/>
+        <attribute name="name_apt-get" value="qt5-dev-tools libqt5-dev"/>
+        <attribute name="more_information" value="Didn't find: Qt (version 4 or 5); install it from packages, or download from https://info.qt.io/download-qt-for-application-development"/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+  
+
+    <module name="qt4">
+      <source type="system_dependency">
+        <attribute name="dependency_test" value="qobject.h and qapplication.h and (qmake or qmake-qt4)"/>
+        <attribute name="name_yum" value="qt4-devel"/>
+        <attribute name="name_apt-get" value="qt4-dev-tools libqt4-dev"/>
+        <attribute name="more_information" value="Didn't find:   QT 4, download and install it from http://qt.nokia.com/downloads/"/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+  
+    <module name="libc">
+      <source type="system_dependency">
+        <attribute name="file_test" value="/usr/lib/ld-linux.so.2 or /lib/ld-linux.so.2"/>
+        <attribute name="name_apt-get" value="libc6"/>
+        <attribute name="name_yum" value="glibc"/>
+        <attribute name="more_information" value="Didn't find:   libc package; please install it."/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+    <module name="libc-debug">
+      <source type="system_dependency">
+        <attribute name="file_test" value="/usr/lib/debug/lib64/ld-linux-x86-64.so.2.debug or /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.25.so or /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.24.so or /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.23.so /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.22.so or /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.21.so or /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.20.so or /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.19.so or /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.18.so or /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.17.so or /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.16.so or /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.15.so or/usr/lib/debug/lib/i386-linux-gnu/ld-2.25.so or /usr/lib/debug/lib/i386-linux-gnu/ld-2.24.so or /usr/lib/debug/lib/i386-linux-gnu/ld-2.23.so or /usr/lib/debug/lib/i386-linux-gnu/ld-2.22.so or /usr/lib/debug/lib/i386-linux-gnu/ld-2.21.so or /usr/lib/debug/lib/i386-linux-gnu/ld-2.20.so or /usr/lib/debug/lib/i386-linux-gnu/ld-2.19.so or /usr/lib/debug/lib/i386-linux-gnu/ld-2.18.so or /usr/lib/debug/lib/i386-linux-gnu/ld-2.17.so or /usr/lib/debug/lib/i386-linux-gnu/ld-2.16.so or /usr/lib/debug/lib/i386-linux-gnu/ld-2.15.so"/>
+        <attribute name="name_apt-get" value="libc6-dbg"/>
+        <attribute name="name_yum" value="glibc-debuginfo"/>
+        <attribute name="more_information" value="Didn't find:   libc debug package; please install it."/>
+      </source>
+      <depends_on name="libc" optional="False"/>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+    <module name="elf-loader">
+      <source type="mercurial">
+        <attribute name="url" value="http://code.nsnam.org/thehajime/elf-loader"/>
+      </source>
+      <depends_on name="libc-debug" optional="False"/>
+      <build type="make" objdir="no">
+        <attribute name="configure_arguments" value="vdl-config.h"/>
+        <attribute name="install_arguments" value="PREFIX=$INSTALLDIR"/>
+      </build>
+    </module>
+
+    <module name="libaspect">
+      <source type="mercurial">
+        <attribute name="url" value="http://code.nsnam.org/thehajime/libaspect"/>
+      </source>
+      <build type="make" objdir="no">
+        <attribute name="install_arguments" value="PREFIX=$INSTALLDIR"/>
+      </build>
+    </module>
+
+    <module name="netanim-3.100">
+      <source type="archive">
+        <attribute name="url" value="file:///workspace/bake/netanim-3.100.tar.bz2"/>
+        <attribute name="extract_directory" value="netanim-3.100"/>
+      </source>
+      <build type="make" objdir="no">
+        <attribute name="pre_installation" value="cd $SRCDIR;qmake NetAnim.pro or cd $SRCDIR;qmake-qt4 NetAnim.pro or cd $SRCDIR;qmake -spec macx-g++ NetAnim.pro"/>
+      </build>
+      <depends_on name="qt4" optional="False"/>
+      <depends_on name="g++" optional="False"/>
+    </module>
+
+
+    <module name="ns-3.14.1">
+      <source type="archive">
+        <attribute name="url" value="file:///workspace/bake/ns-3.14.1.tar.bz2"/>
+        <attribute name="extract_directory" value="ns-3.14.1"/>
+      </source>
+      <depends_on name="netanim-3.100" optional="True"/>
+      <depends_on name="pybindgen-0.15.0.809" optional="True"/>
+      <depends_on name="pyviz-prerequisites" optional="True"/>
+      <build type="waf" objdir="yes">
+        <attribute name="configure_arguments" value="configure --prefix=$INSTALLDIR --enable-examples --enable-tests"/>
+      </build>
+    </module>
+
+    <module name="ns-allinone-3.14.1">
+      <source type="none"/>
+      <depends_on name="netanim-3.100" optional="True"/>
+      <depends_on name="nsc-0.5.3" optional="True"/>
+      <depends_on name="pybindgen-0.15.0.809" optional="True"/>
+      <depends_on name="pyviz-prerequisites" optional="True"/>
+      <depends_on name="click-ns-3.17" optional="True"/>
+      <depends_on name="openflow-ns-3.17" optional="True"/>
+      <depends_on name="ns-3.14.1" optional="False"/>
+      <build type="none"/>
+    </module>
+
+
+<!--  Bake specific dependencies -->
+    <module name="mercurial">
+      <source type="system_dependency">
+        <attribute name="dependency_test" value="hg"/>
+        <attribute name="name_apt-get" value="mercurial"/>
+        <attribute name="name_yum" value="mercurial"/>
+        <attribute name="more_information" value="Didn't find:   Mercurial package; please install it."/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+    <module name="subversion">
+      <source type="system_dependency">
+        <attribute name="dependency_test" value="svn"/>
+        <attribute name="name_apt-get" value="subversion"/>
+        <attribute name="name_yum" value="subversion mod_dav_svn"/>
+        <attribute name="more_information" value="Didn't find:   Subversion package (SVN); please install it."/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+    <module name="unrar">
+      <source type="system_dependency">
+        <attribute name="dependency_test" value="unrar"/>
+        <attribute name="name_apt-get" value="unrar"/>
+        <attribute name="name_yum" value="rar"/>
+        <attribute name="more_information" value="Didn't find:   unrar - Unarchiver for .rar files; please install it."/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+    <module name="make">
+      <source type="system_dependency">
+        <attribute name="dependency_test" value="make"/>
+        <attribute name="name_apt-get" value="make"/>
+        <attribute name="name_yum" value="rar"/>
+        <attribute name="more_information" value="Didn't find:   make - Utility for Directing compilation.; please install it."/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+    <module name="patch">
+      <source type="system_dependency">
+        <attribute name="dependency_test" value="patch"/>
+        <attribute name="name_apt-get" value="patch"/>
+        <attribute name="name_yum" value="patch"/>
+        <attribute name="more_information" value="Didn't find:   patch - Apply a diff file to an original; please install it."/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+    <module name="tar">
+      <source type="system_dependency">
+        <attribute name="dependency_test" value="tar"/>
+        <attribute name="name_apt-get" value="tar"/>
+        <attribute name="name_yum" value="tar"/>
+        <attribute name="more_information" value="Didn't find:   tar - GNU version of the tar archiving utility; please install it."/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+    <module name="cvs">
+      <source type="system_dependency">
+        <attribute name="dependency_test" value="cvs"/>
+        <attribute name="name_apt-get" value="cvs"/>
+        <attribute name="name_yum" value="cvs"/>
+        <attribute name="more_information" value="Didn't find:   cvs - Concurrent Versions System; please install it."/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+    <module name="git">
+      <source type="system_dependency">
+        <attribute name="dependency_test" value="git"/>
+        <attribute name="name_apt-get" value="git"/>
+        <attribute name="name_yum" value="git"/>
+        <attribute name="more_information" value="Didn't find:   git - fast, scalable, distributed revision control system; please install it."/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+    <module name="bazaar">
+      <source type="system_dependency">
+        <attribute name="dependency_test" value="bzr"/>
+        <attribute name="name_apt-get" value="bzr"/>
+        <attribute name="name_yum" value="bzr"/>
+        <attribute name="more_information" value="Didn't find:   bzr - easy to use distributed version control system; please install it."/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+    <module name="cmake">
+      <source type="system_dependency">
+        <attribute name="dependency_test" value="cmake"/>
+        <attribute name="name_apt-get" value="cmake"/>
+        <attribute name="name_yum" value="cmake"/>
+        <attribute name="more_information" value="Didn't find:   git - fast, scalable, distributed revision control system; please install it."/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+    <module name="automake">
+      <source type="system_dependency">
+        <attribute name="dependency_test" value="autoconf"/>
+        <attribute name="name_apt-get" value="autoconf automake"/>
+        <attribute name="name_yum" value="autoconf automake"/>
+        <attribute name="more_information" value="Didn't find:   autoconf and automake - automatic configure and Makefile script builders; please install it."/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+    <module name="7z">
+      <source type="system_dependency">
+        <attribute name="dependency_test" value="7z"/>
+        <attribute name="name_apt-get" value="p7zip-full"/>
+        <attribute name="name_yum" value="p7zip p7zip-plugins"/>
+        <attribute name="more_information" value="Didn't find:   p7zip - 7z file archiver with high compression ratio; please install it."/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+    <module name="xz-utils">
+      <source type="system_dependency">
+        <attribute name="dependency_test" value="xz"/>
+        <attribute name="name_apt-get" value="xz-utils"/>
+        <attribute name="name_yum" value="xz-devel"/>
+        <attribute name="more_information" value="Didn't find:   xz utils - XZ-format compression utilities; please install it."/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+    <!-- For the documentation -->
+    <module name="python-sphinx">
+      <source type="system_dependency">
+        <attribute name="dependency_test" value="sphinx-build"/>
+        <attribute name="name_apt-get" value="python-sphinx"/>
+        <attribute name="name_yum" value="python-sphinx"/>
+        <attribute name="more_information" value="Didn't find:   python-sphinx - documentation generator for Python projects; please install it, if you think you will gennerate the documentation."/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+    <module name="python-pygments">
+      <source type="system_dependency">
+        <attribute name="dependency_test" value="pygmentize"/>
+        <attribute name="name_apt-get" value="python-pygments"/>
+        <attribute name="name_yum" value="python-pygments"/>
+        <attribute name="more_information" value="Didn't find:   python-pygments - syntax highlighting package written in Python; please install it, if you think you will gennerate the documentation."/>
+      </source>
+      <build type="none" objdir="no">
+      </build>
+    </module>
+
+<!--  Bake dependencies end -->
+
+  </modules>
+ 
+  <predefined name="set-bake-env">
+      <enable name="mercurial"/>
+      <enable name="subversion"/>
+      <enable name="unrar"/>
+      <enable name="make"/>
+      <enable name="patch"/>
+      <enable name="tar"/>
+      <enable name="cvs"/>
+      <enable name="git"/>
+      <enable name="bazaar"/>
+      <enable name="cmake"/>
+      <enable name="automake"/>
+      <enable name="7z"/>
+      <enable name="xz-utils"/>
+      <enable name="python-sphinx"/>
+      <enable name="python-pygments"/>
+  </predefined>
+
+ <predefined name="dbg">
+    <append name="CFLAGS" value="-g"/>
+    <append name="CXXFLAGS" value="-g"/>
+    <configuration objdir="dbg"/>
+    <configuration installdir="build_dbg"/>
+  </predefined>
+
+  <predefined name="opt">
+    <configuration objdir="opt"/>
+    <configuration installdir="build_opt"/>
+<!--     <append name="configure_arguments" value=" -d optimized"/> -->
+    <append name="CFLAGS" value="-O3"/>
+    <append name="CXXFLAGS" value="-O3"/>
+  </predefined>
+  
+  <predefined name="ns3">
+    <enable name="ns-3-dev"/>
+    <!--    <configuration installdir="." sourcedir="../source"/> -->
+    <append module="ns-3-dev" name="configure_arguments" value="--enable-examples --enable-tests"/>
+  </predefined>
+
+  <predefined name="ns3-min">
+    <enable name="ns-3-dev"/>
+    <append module="ns-3-dev" name="configure_arguments" value=" --enable-modules=core,network,wifi"/> -->
+  </predefined>
+
+</configuration>
