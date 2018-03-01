@@ -67,38 +67,27 @@ RUN ./bake.py check -vvv
 RUN ./bake.py download -vvv
 RUN ./bake.py build -vvv
 
-WORKDIR /workspace/bake/source/ns-allinone-3.14.1
-RUN ./test.py -c core
-RUN ./waf --run hello-simulator
+# ROOM FOR OPTIMISATION if these are needed (both should be available since they are compiled - albeit for 3.17):
+# NS-3 OpenFlow Integration     : not enabled (OpenFlow not enabled (see option --with-openflow))
+# NS-3 Click Integration        : not enabled (nsclick not enabled (see option --with-nsclick))
+# 
 
-#project setup
-# ADD wscript.dc /wscript.dc
-# RUN cd /tmp && git clone https://github.com/aravindanbalan/Projects.git
-# RUN cp -R /tmp/Projects/* /workspace/bake/source/ns-3.14.1/scratch
-# RUN mv /workspace/bake/source/ns-3.14.1/wscript /workspace/bake/source/ns-3.14.1/wscript.orig
-# RUN mv /workspace/bake/source/ns-3.14.1/scratch/wscript.txt /workspace/bake/source/ns-3.14.1/wscript
-# RUN mv /wscript.dc /workspace/bake/source/ns-3.14.1/scratch/wscript
-# RUN chmod 755 /workspace/bake/source/ns-3.14.1/wscript && chmod 755 /workspace/bake/source/ns-3.14.1/scratch/wscript
+WORKDIR /workspace/bake/source/ns-3.14.1
 
+COPY ./ns-3-dev-ddfc.tar.bz2 /workspace/bake/source/ns-3.14.1
 
-#cryptopp
-# RUN cd / && wget http://www.cryptopp.com/cryptopp562.zip 
-# RUN mkdir -p /cryptopp && mv /cryptopp562.zip /cryptopp/cryptopp562.zip && cd /cryptopp && unzip cryptopp562.zip
-# RUN cd /cryptopp && make -j 4
-# RUN cd /cryptopp && make install
+RUN tar xvjf ./ns-3-dev-ddfc.tar.bz2
 
-# RUN cd /tmp/Projects && git pull 
-# RUN cp /tmp/Projects/wscript.txt /workspace/bake/source/ns-3.14.1/wscript
-# RUN cd /tmp/Projects && git pull && cp -R /tmp/Projects/* /workspace/bake/source/ns-3.14.1/scratch
+RUN rsync -avv ./ns-3-dev/src/* ./src/
+
+RUN ./waf configure --enable-examples --enable-tests && ./waf
+
+# CLEANUP
+RUN apt-get clean && \
+  rm -rf /var/lib/apt && \
+  rm -r /workspace/bake/source/ns-allinone-3.14.1 && \
+  rm -rf /workspace/bake/*.tar.bz2 /workspace/bake/source/*.tar.bz2
 
 
-#Wireshark
-# RUN cd /tmp && wget https://2.na.dl.wireshark.org/src/wireshark-1.10.7.tar.bz2
-# RUN cd /tmp && tar -xvf wireshark-1.10.7.tar.bz2
-# RUN cd /tmp/wireshark-1.10.7 && ./configure && make -j 5 
-# RUN cd /tmp/wireshark-1.10.7 && make install
 
-# RUN apt-get install -y astyle vim
 
-# RUN cd /tmp/Projects && git pull && git checkout numnodesfix && ./ns3.sh
-# RUN cd /workspace/bake/source/ns-3.14.1 && ./waf --run "scratch/SendPacket --numNodes=3"
