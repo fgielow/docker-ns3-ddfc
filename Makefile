@@ -10,5 +10,5 @@ setup-xhost:
 
 build: Dockerfile
 	tar cvjf ddfc-source.tar.bz2 ./ddfc-source/
-	cp -r ./ddfc-source ~/ddfc-source
 	docker build -t $(NAME) .
+	rm ddfc-source.tar.bz2
