@@ -19,7 +19,7 @@ on the folder /workspace/bake/source/ns-3.14.1; you can also simply use the alia
 You can also opt to run the protocol with PyViz to visualize its working by using: 
 
     ./waf --run firefly_dynamic_clustering-example --vis 
-    
+
 You can also simply use the alias:
 
     ddfc-vis
@@ -76,7 +76,11 @@ If you use other operating system, please use the power of google.
 
 # STARTING THE CONTAINER
 
-With the dependencies met, simply run
+With the dependencies met, simply clone the repository and build it
+
+    git clone https://github.com/fgielow/docker-ns3-ddfc.git
+
+    cd docker-ns3-ddfc
 
     make
 
