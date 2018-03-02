@@ -1,11 +1,14 @@
 NAME=fgielow/docker-ns3-ddfc
+IP = $(shell ifconfig en0 | grep inet | awk '$$1=="inet" {print $$2}')
 
-build: Dockerfile
-	docker build -t $(NAME) .
+run-xhost: build setup-xhost
+	docker container run --rm -it -v `pwd`/ddfc-source/src/firefly_dynamic_clustering:/workspace/bake/source/ns-3.14.1/src/firefly_dynamic_clustering -e DISPLAY=$(IP):0 -v /tmp/.X11-unix:/tmp/.X11-unix $(NAME)
 
 setup-xhost:
-	ip=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
-	xhost + $ip
+	xhost + $(IP)
+	xhost + 127.0.0.1
 
-run-xhost:
-	docker run --rm -it -v `pwd`:/root/work -e DISPLAY=$$ip:0 -v /tmp/.X11-unix:/tmp/.X11-unix $(NAME)
+build: Dockerfile
+	tar cvjf ddfc-source.tar.bz2 ./ddfc-source/
+	cp -r ./ddfc-source ~/ddfc-source
+	docker build -t $(NAME) .
