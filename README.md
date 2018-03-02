@@ -9,19 +9,20 @@ This environment was setup for DDFC - a routing protocol implemented in NS3. You
 To help you, two aliases were created already.
 You can execute the DDFC protocol example simulation by running: 
 
-    $ ./waf --run firefly_dynamic_clustering-example
+    ./waf --run firefly_dynamic_clustering-example
 
 on the folder /workspace/bake/source/ns-3.14.1; you can also simply use the alias:
 
-    $ ddfc
+    ddfc
 
 
 You can also opt to run the protocol with PyViz to visualize its working by using: 
 
-    $ ./waf --run firefly_dynamic_clustering-example --vis 
+    ./waf --run firefly_dynamic_clustering-example --vis 
+    
 You can also simply use the alias:
 
-    $ ddfc-vis
+    ddfc-vis
 
 Note that for the visualizer to appear, X forwarding must be functional between the Docker container and your most machine. Also, you will need to be properly connected to a network for this to work.
 
@@ -43,30 +44,30 @@ The nodes being considered here and their positions can be found on:
 You will need the command **xhost** to work.
 On MacOSX you can solve this by install Xquartz either by downloading the package and installing manually or by installing with brew:
 
-    $ brew cask install xquartz
+    brew cask install xquartz
 
 On Linux distributions you can simply install:
 
-    $ sudo apt-get install x11-xserver-utils
+    sudo apt-get install x11-xserver-utils
 
 
 And, of course, you need **DOCKER**. You can follow the instructions from here: https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce
 
 Which at the time of writing are, fox apt-get based linux distrubitions:
 
-    $ sudo apt-get update && sudo apt-get install \
+    sudo apt-get update && sudo apt-get install \
       apt-transport-https \
       ca-certificates \
       curl \
       software-properties-common
 
-    $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
-    $ sudo apt-key fingerprint 0EBFCD88
+    sudo apt-key fingerprint 0EBFCD88
 
-    $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu zesty stable"
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu zesty stable"
 
-    $ sudo apt-get update && sudo apt-get install docker-ce
+    sudo apt-get update && sudo apt-get install docker-ce
 
 
 
@@ -77,8 +78,8 @@ If you use other operating system, please use the power of google.
 
 With the dependencies met, simply run
 
-    $ make
+    make
 
 If you wish to compile the container image locally instead of fetch from Docker Hub, you can simply:
 
-    $ make building
+    make building
