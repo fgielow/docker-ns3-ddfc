@@ -34,8 +34,8 @@ ColorGradientHelper FireflyClustering::colorHelper;
 void FireflyClustering::initializeReadingGUIDependencies(type_of_readings type) {
 	switch (type) {
 		case (temperature): {
-			MIN_READING = 0.0;
-			MAX_READING = 45.0;
+			MIN_READING = 10.0;
+			MAX_READING = 30.0;
 			ColorHandler color_args[] = {
 				ColorHandler(0,40,255),
 				ColorHandler(0,207,181),

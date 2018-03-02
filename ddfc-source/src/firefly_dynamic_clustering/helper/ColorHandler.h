@@ -18,7 +18,7 @@ static const std::string hexDigits = "0123456789ABCDEF";
 class ColorHandler {
 
 private:
-	std::string ConvertRGBtoHex(int);
+	std::string ConvertRGBtoHex(int,int,int);
 	uint8_t red, green, blue;
 
 public:

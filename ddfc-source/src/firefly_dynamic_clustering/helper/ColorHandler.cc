@@ -7,6 +7,8 @@
 
 #include "ColorHandler.h"
 #include "ns3/random-variable.h"
+#include<stdio.h>
+
 
 namespace ns3 {
 
@@ -21,23 +23,14 @@ ColorHandler::ColorHandler(uint8_t r,uint8_t g,uint8_t b) {
 	blue = b;
 }
 
-std::string ColorHandler::ConvertRGBtoHex(int num) {
-
-	std::string rgb;
-
-	for (int i=(3*2) - 1; i>=0; i--) {
-		rgb += hexDigits[((num >> i*4) & 0xF)];
-	}
-
-	return rgb;
+std::string ColorHandler::ConvertRGBtoHex(int r,int g,int b) {
+	char hexcol[16];
+	snprintf(hexcol, sizeof hexcol, "%02x%02x%02x", r, g, b);
+	return hexcol;
 }
 
 std::string ColorHandler::getColorHex() {
-	int rgbNum = ((red & 0xff) << 16)
-		| ((green & 0xff) << 8)
-		| (blue & 0xff);
-
-	 return ConvertRGBtoHex(rgbNum);
+	return ConvertRGBtoHex(red,green,blue);
 }
 
 void ColorHandler::randomizeColor() {

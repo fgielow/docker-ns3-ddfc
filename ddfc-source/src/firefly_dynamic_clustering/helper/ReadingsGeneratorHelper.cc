@@ -48,9 +48,7 @@ void ReadingsGeneratorHelper::registerReading(double time, double reading) {
 
 double ReadingsGeneratorHelper::getReading(double time) {
 
-	reading_t front_ = readings.front();
-
-	while (time > front_.time_ && readings.size() > 0) {
+	while (time > readings.front().time_ && readings.size() > 0) {
 		last_reading = readings.front();
 		readings.pop();
 	}
@@ -58,8 +56,8 @@ double ReadingsGeneratorHelper::getReading(double time) {
 	if (readings.size()>0) {
 		return lerp(
 				last_reading.value_,
-				front_.value_,
-				(time - last_reading.time_) / (front_.time_ - last_reading.time_)
+				readings.front().value_,
+				(time - last_reading.time_) / (readings.front().time_ - last_reading.time_)
 			);
 //		std::cout << "last reading " << last_reading.time_ << " time " << time << " front " << readings.front().time_ << " gives " << ((time - last_reading.time_) / (readings.front().time_ - last_reading.time_)) << "\n";
 	} else {
