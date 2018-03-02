@@ -53,21 +53,9 @@ On Linux distributions you can simply install:
 
 And, of course, you need **DOCKER**. You can follow the instructions from here: https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce
 
-Which at the time of writing are, fox apt-get based linux distrubitions:
+Alternatively, you should also be able to simply run:
 
-    sudo apt-get update && sudo apt-get install \
-      apt-transport-https \
-      ca-certificates \
-      curl \
-      software-properties-common
-
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-
-    sudo apt-key fingerprint 0EBFCD88
-
-    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu zesty stable"
-
-    sudo apt-get update && sudo apt-get install docker-ce
+    wget -qO- https://get.docker.com/ | sh
 
 
 
