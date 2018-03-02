@@ -1,4 +1,4 @@
-docker-ns3-ddfc
+ns3-ddfc
 ==========
 
 
