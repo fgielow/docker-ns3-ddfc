@@ -50,6 +50,21 @@ On Linux distributions you can simply install:
     $ sudo apt-get install x11-xserver-utils
 
 
+And, of course, you need **DOCKER**. You can follow the instructions from here: https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce
+
+Which at the time of writing are, fox apt-get based linux distrubitions:
+
+    $ sudo apt-get update
+
+    $ sudo apt-get install \
+      apt-transport-https \
+      ca-certificates \
+      curl \
+      software-properties-common
+
+If you use other operating system, please use the power of google.
+
+
 # STARTING THE CONTAINER
 
 With the dependencies met, simply run
