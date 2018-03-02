@@ -11,7 +11,8 @@ setup-xhost:
 	xhost + $(IP)
 	xhost + 127.0.0.1
 
-build: Dockerfile
-	tar cvjf ddfc-source.tar.bz2 ./ddfc-source/
+build: Dockerfile ddfc-source.tar.bz2
 	docker build -t $(NAME) .
-	rm ddfc-source.tar.bz2
+
+ddfc-source.tar.bz2:
+	tar cvjf ./container-dependencies/ddfc-source.tar.bz2 ./ddfc-source/

@@ -79,7 +79,7 @@ RUN apt-get install -y g++-multilib
 
 WORKDIR /workspace/bake/source/ns-3.14.1
 
-COPY ./ddfc-source.tar.bz2 /workspace/bake/source/ns-3.14.1
+COPY ./container-dependencies/ddfc-source.tar.bz2 /workspace/bake/source/ns-3.14.1
 
 RUN tar xvjf ./ddfc-source.tar.bz2 && rsync -avv ./ddfc-source/src/* ./src/
 
