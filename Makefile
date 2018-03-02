@@ -1,4 +1,4 @@
-NAME=fgielow/docker-ns3-ddfc
+NAME=fgielow/ns3-ddfc
 IP = $(shell ifconfig en0 | grep inet | awk '$$1=="inet" {print $$2}')
 
 run-xhost: setup-xhost
