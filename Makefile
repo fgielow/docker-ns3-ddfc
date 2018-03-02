@@ -1,7 +1,7 @@
 NAME=fgielow/docker-ns3-ddfc
 IP = $(shell ifconfig en0 | grep inet | awk '$$1=="inet" {print $$2}')
 
-run-xhost: build setup-xhost
+run-xhost: setup-xhost
 	docker container run --rm -it -v `pwd`/ddfc-source/src/firefly_dynamic_clustering:/workspace/bake/source/ns-3.14.1/src/firefly_dynamic_clustering -e DISPLAY=$(IP):0 -v /tmp/.X11-unix:/tmp/.X11-unix $(NAME)
 
 setup-xhost:
