@@ -94,7 +94,7 @@ RUN ln -s /workspace/bake/source/ns-3.14.1/src/firefly_dynamic_clustering/exampl
 RUN find /workspace/bake/source/ns-3.14.1/build/ -maxdepth 1 -name "*.so" -exec ln -s {} /usr/lib/ \;
 
 # ./waf apiscan always got hang, wtf .. 1,5 minutes should do more than fine though.
-RUN ./waf --apiscan=firefly_dynamic_clustering & pid=$! && sleep 90 && kill $pid
+RUN ./waf --apiscan=firefly_dynamic_clustering & pid=$! && sleep 90 && kill $pid 2> /dev/null || true
 
 # helper script
 COPY ./container-dependencies/ddfc-helper.sh /root/.ddfc-helper.sh
