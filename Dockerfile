@@ -34,7 +34,7 @@ python-pygccxml python-setuptools ipython
 
 
 # NS3 INSTALLATION
-run mkdir /workspace
+RUN mkdir /workspace
 WORKDIR /workspace
 
 RUN hg clone http://code.nsnam.org/bake
