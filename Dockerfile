@@ -97,6 +97,12 @@ RUN find /workspace/bake/source/ns-3.14.1/build/ -maxdepth 1 -name "*.so" -exec 
 # NOW BUILD PYTHON BINDINGS
 RUN ./waf --apiscan=visualizer,firefly_dynamic_clustering
 
+
+# helper script
+COPY ./container-dependencies/ddfc-helper.sh /root/.ddfc-helper.sh
+RUN echo '[[ -f /root/.ddfc-helper.sh ]] && source /root/.ddfc-helper.sh' >> /root/.bashrc
+
+
 # CLEANUP
 RUN apt-get clean && \
   rm -rf /var/lib/apt && \
@@ -104,8 +110,5 @@ RUN apt-get clean && \
   rm -rf /workspace/bake/source/ns-3.14.1/ddfc-source && \
   rm -rf /workspace/bake/*.tar.bz2 /workspace/bake/source/*.tar.bz2 \
   rm -rf /workspace/bake/source/ns-3.14.1/ddfc-source.tar.bz2
-
-
-# CMD ./waf --run firefly_dynamic_clustering-example --vis
 
 
