@@ -86,17 +86,15 @@ RUN tar xvjf ./ddfc-source.tar.bz2 && rsync -avv ./ddfc-source/src/* ./src/
 # remove files with name starting with . on plugins, that broke everything
 RUN find ./src/visualizer/visualizer/plugins -name "\.*" -exec rm {} \;
 
-RUN ./waf configure --build-profile debug --enable-examples --enable-tests && ./waf
+RUN ./waf configure --enable-examples --enable-tests && ./waf
 
 RUN ln -s /workspace/bake/source/ns-3.14.1/src/firefly_dynamic_clustering/examples/mote_locs.xml /opt/
 RUN ln -s /workspace/bake/source/ns-3.14.1/src/firefly_dynamic_clustering/examples/full_data.xml /opt/
 
 RUN find /workspace/bake/source/ns-3.14.1/build/ -maxdepth 1 -name "*.so" -exec ln -s {} /usr/lib/ \;
 
-
-# NOW BUILD PYTHON BINDINGS
-RUN ./waf --apiscan=firefly_dynamic_clustering
-
+# ./waf apiscan always got hang, wtf .. 1,5 minutes should do more than fine though.
+RUN ./waf --apiscan=firefly_dynamic_clustering & pid=$! && sleep 90 && kill $pid
 
 # helper script
 COPY ./container-dependencies/ddfc-helper.sh /root/.ddfc-helper.sh
