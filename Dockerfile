@@ -95,7 +95,7 @@ RUN find /workspace/bake/source/ns-3.14.1/build/ -maxdepth 1 -name "*.so" -exec 
 
 
 # NOW BUILD PYTHON BINDINGS
-RUN ./waf --apiscan=visualizer,firefly_dynamic_clustering
+RUN ./waf --apiscan=firefly_dynamic_clustering
 
 
 # helper script

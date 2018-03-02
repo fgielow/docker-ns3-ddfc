@@ -20,6 +20,10 @@ def module_init():
 def register_types(module):
     root_module = module.get_root()
     
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): ns3::MessageType [enumeration]
+    module.add_enum('MessageType', ['NONE', 'FIREFLY_BEACON'])
+    ## Constants.h (module 'firefly_dynamic_clustering'): ns3::type_of_readings [enumeration]
+    module.add_enum('type_of_readings', ['light', 'temperature', 'humidity', 'energy'])
     ## address.h (module 'network'): ns3::Address [class]
     module.add_class('Address', import_from_module='ns.network')
     ## address.h (module 'network'): ns3::Address::MaxSize_e [enumeration]
@@ -30,12 +34,52 @@ def register_types(module):
     module.add_class('AttributeConstructionList', import_from_module='ns.core')
     ## attribute-construction-list.h (module 'core'): ns3::AttributeConstructionList::Item [struct]
     module.add_class('Item', import_from_module='ns.core', outer_class=root_module['ns3::AttributeConstructionList'])
+    ## buffer.h (module 'network'): ns3::Buffer [class]
+    module.add_class('Buffer', import_from_module='ns.network')
+    ## buffer.h (module 'network'): ns3::Buffer::Iterator [class]
+    module.add_class('Iterator', import_from_module='ns.network', outer_class=root_module['ns3::Buffer'])
     ## callback.h (module 'core'): ns3::CallbackBase [class]
     module.add_class('CallbackBase', import_from_module='ns.core')
+    ## ColorGradientHelper.h (module 'firefly_dynamic_clustering'): ns3::ColorGradientHelper [class]
+    module.add_class('ColorGradientHelper')
+    ## ColorHandler.h (module 'firefly_dynamic_clustering'): ns3::ColorHandler [class]
+    module.add_class('ColorHandler')
     ## event-id.h (module 'core'): ns3::EventId [class]
     module.add_class('EventId', import_from_module='ns.core')
     ## firefly_dynamic_clustering-helper.h (module 'firefly_dynamic_clustering'): ns3::FireflyClusteringHelper [class]
     module.add_class('FireflyClusteringHelper')
+    ## FireflyClusteringLogic.h (module 'firefly_dynamic_clustering'): ns3::FireflyClusteringLogic [class]
+    module.add_class('FireflyClusteringLogic')
+    ## GlobalAnalysis.h (module 'firefly_dynamic_clustering'): ns3::GlobalAnalysis [class]
+    module.add_class('GlobalAnalysis')
+    ## int-to-type.h (module 'core'): ns3::IntToType<0> [struct]
+    module.add_class('IntToType', import_from_module='ns.core', template_parameters=['0'])
+    ## int-to-type.h (module 'core'): ns3::IntToType<0>::v_e [enumeration]
+    module.add_enum('v_e', ['value'], outer_class=root_module['ns3::IntToType< 0 >'], import_from_module='ns.core')
+    ## int-to-type.h (module 'core'): ns3::IntToType<1> [struct]
+    module.add_class('IntToType', import_from_module='ns.core', template_parameters=['1'])
+    ## int-to-type.h (module 'core'): ns3::IntToType<1>::v_e [enumeration]
+    module.add_enum('v_e', ['value'], outer_class=root_module['ns3::IntToType< 1 >'], import_from_module='ns.core')
+    ## int-to-type.h (module 'core'): ns3::IntToType<2> [struct]
+    module.add_class('IntToType', import_from_module='ns.core', template_parameters=['2'])
+    ## int-to-type.h (module 'core'): ns3::IntToType<2>::v_e [enumeration]
+    module.add_enum('v_e', ['value'], outer_class=root_module['ns3::IntToType< 2 >'], import_from_module='ns.core')
+    ## int-to-type.h (module 'core'): ns3::IntToType<3> [struct]
+    module.add_class('IntToType', import_from_module='ns.core', template_parameters=['3'])
+    ## int-to-type.h (module 'core'): ns3::IntToType<3>::v_e [enumeration]
+    module.add_enum('v_e', ['value'], outer_class=root_module['ns3::IntToType< 3 >'], import_from_module='ns.core')
+    ## int-to-type.h (module 'core'): ns3::IntToType<4> [struct]
+    module.add_class('IntToType', import_from_module='ns.core', template_parameters=['4'])
+    ## int-to-type.h (module 'core'): ns3::IntToType<4>::v_e [enumeration]
+    module.add_enum('v_e', ['value'], outer_class=root_module['ns3::IntToType< 4 >'], import_from_module='ns.core')
+    ## int-to-type.h (module 'core'): ns3::IntToType<5> [struct]
+    module.add_class('IntToType', import_from_module='ns.core', template_parameters=['5'])
+    ## int-to-type.h (module 'core'): ns3::IntToType<5>::v_e [enumeration]
+    module.add_enum('v_e', ['value'], outer_class=root_module['ns3::IntToType< 5 >'], import_from_module='ns.core')
+    ## int-to-type.h (module 'core'): ns3::IntToType<6> [struct]
+    module.add_class('IntToType', import_from_module='ns.core', template_parameters=['6'])
+    ## int-to-type.h (module 'core'): ns3::IntToType<6>::v_e [enumeration]
+    module.add_enum('v_e', ['value'], outer_class=root_module['ns3::IntToType< 6 >'], import_from_module='ns.core')
     ## ipv4-address.h (module 'network'): ns3::Ipv4Address [class]
     module.add_class('Ipv4Address', import_from_module='ns.network')
     ## ipv4-address.h (module 'network'): ns3::Ipv4Address [class]
@@ -56,6 +100,8 @@ def register_types(module):
     module.add_class('ObjectDeleter', import_from_module='ns.core')
     ## object-factory.h (module 'core'): ns3::ObjectFactory [class]
     module.add_class('ObjectFactory', import_from_module='ns.core')
+    ## ReadingsGeneratorHelper.h (module 'firefly_dynamic_clustering'): ns3::ReadingsGeneratorHelper [class]
+    module.add_class('ReadingsGeneratorHelper')
     ## simple-ref-count.h (module 'core'): ns3::SimpleRefCount<ns3::Object, ns3::ObjectBase, ns3::ObjectDeleter> [class]
     module.add_class('SimpleRefCount', automatic_type_narrowing=True, import_from_module='ns.core', template_parameters=['ns3::Object', 'ns3::ObjectBase', 'ns3::ObjectDeleter'], parent=root_module['ns3::ObjectBase'], memory_policy=cppclass.ReferenceCountingMethodsPolicy(incref_method='Ref', decref_method='Unref', peekref_method='GetReferenceCount'))
     ## simulator.h (module 'core'): ns3::Simulator [class]
@@ -64,6 +110,14 @@ def register_types(module):
     module.add_class('Tag', import_from_module='ns.network', parent=root_module['ns3::ObjectBase'])
     ## tag-buffer.h (module 'network'): ns3::TagBuffer [class]
     module.add_class('TagBuffer', import_from_module='ns.network')
+    ## timer.h (module 'core'): ns3::Timer [class]
+    module.add_class('Timer', import_from_module='ns.core')
+    ## timer.h (module 'core'): ns3::Timer::DestroyPolicy [enumeration]
+    module.add_enum('DestroyPolicy', ['CANCEL_ON_DESTROY', 'REMOVE_ON_DESTROY', 'CHECK_ON_DESTROY'], outer_class=root_module['ns3::Timer'], import_from_module='ns.core')
+    ## timer.h (module 'core'): ns3::Timer::State [enumeration]
+    module.add_enum('State', ['RUNNING', 'EXPIRED', 'SUSPENDED'], outer_class=root_module['ns3::Timer'], import_from_module='ns.core')
+    ## timer-impl.h (module 'core'): ns3::TimerImpl [class]
+    module.add_class('TimerImpl', allow_subclassing=True, import_from_module='ns.core')
     ## type-id.h (module 'core'): ns3::TypeId [class]
     module.add_class('TypeId', import_from_module='ns.core')
     ## type-id.h (module 'core'): ns3::TypeId::AttributeFlag [enumeration]
@@ -76,6 +130,16 @@ def register_types(module):
     module.add_class('empty', import_from_module='ns.core')
     ## int64x64-double.h (module 'core'): ns3::int64x64_t [class]
     module.add_class('int64x64_t', import_from_module='ns.core')
+    ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): ns3::neighbor_reading_t [struct]
+    module.add_class('neighbor_reading_t')
+    ## FireflyClusteringLogic.h (module 'firefly_dynamic_clustering'): ns3::node_cluster_info [struct]
+    module.add_class('node_cluster_info')
+    ## ReadingsGeneratorHelper.h (module 'firefly_dynamic_clustering'): ns3::reading_t [struct]
+    module.add_class('reading_t')
+    ## chunk.h (module 'network'): ns3::Chunk [class]
+    module.add_class('Chunk', import_from_module='ns.network', parent=root_module['ns3::ObjectBase'])
+    ## header.h (module 'network'): ns3::Header [class]
+    module.add_class('Header', import_from_module='ns.network', parent=root_module['ns3::Chunk'])
     ## object.h (module 'core'): ns3::Object [class]
     module.add_class('Object', import_from_module='ns.core', parent=root_module['ns3::SimpleRefCount< ns3::Object, ns3::ObjectBase, ns3::ObjectDeleter >'])
     ## object.h (module 'core'): ns3::Object::AggregateIterator [class]
@@ -128,10 +192,18 @@ def register_types(module):
     module.add_class('CallbackValue', import_from_module='ns.core', parent=root_module['ns3::AttributeValue'])
     ## attribute.h (module 'core'): ns3::EmptyAttributeValue [class]
     module.add_class('EmptyAttributeValue', import_from_module='ns.core', parent=root_module['ns3::AttributeValue'])
+    ## enum.h (module 'core'): ns3::EnumChecker [class]
+    module.add_class('EnumChecker', import_from_module='ns.core', parent=root_module['ns3::AttributeChecker'])
+    ## enum.h (module 'core'): ns3::EnumValue [class]
+    module.add_class('EnumValue', import_from_module='ns.core', parent=root_module['ns3::AttributeValue'])
     ## event-impl.h (module 'core'): ns3::EventImpl [class]
     module.add_class('EventImpl', import_from_module='ns.core', parent=root_module['ns3::SimpleRefCount< ns3::EventImpl, ns3::empty, ns3::DefaultDeleter<ns3::EventImpl> >'])
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): ns3::FireflyBeaconHeader [class]
+    module.add_class('FireflyBeaconHeader', parent=root_module['ns3::Header'])
     ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): ns3::FireflyClustering [class]
     module.add_class('FireflyClustering', parent=root_module['ns3::Application'])
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): ns3::FireflyTypeHeader [class]
+    module.add_class('FireflyTypeHeader', parent=root_module['ns3::Header'])
     ## ipv4-address.h (module 'network'): ns3::Ipv4AddressChecker [class]
     module.add_class('Ipv4AddressChecker', import_from_module='ns.network', parent=root_module['ns3::AttributeChecker'])
     ## ipv4-address.h (module 'network'): ns3::Ipv4AddressValue [class]
@@ -186,9 +258,22 @@ def register_methods(root_module):
     register_Ns3ApplicationContainer_methods(root_module, root_module['ns3::ApplicationContainer'])
     register_Ns3AttributeConstructionList_methods(root_module, root_module['ns3::AttributeConstructionList'])
     register_Ns3AttributeConstructionListItem_methods(root_module, root_module['ns3::AttributeConstructionList::Item'])
+    register_Ns3Buffer_methods(root_module, root_module['ns3::Buffer'])
+    register_Ns3BufferIterator_methods(root_module, root_module['ns3::Buffer::Iterator'])
     register_Ns3CallbackBase_methods(root_module, root_module['ns3::CallbackBase'])
+    register_Ns3ColorGradientHelper_methods(root_module, root_module['ns3::ColorGradientHelper'])
+    register_Ns3ColorHandler_methods(root_module, root_module['ns3::ColorHandler'])
     register_Ns3EventId_methods(root_module, root_module['ns3::EventId'])
     register_Ns3FireflyClusteringHelper_methods(root_module, root_module['ns3::FireflyClusteringHelper'])
+    register_Ns3FireflyClusteringLogic_methods(root_module, root_module['ns3::FireflyClusteringLogic'])
+    register_Ns3GlobalAnalysis_methods(root_module, root_module['ns3::GlobalAnalysis'])
+    register_Ns3IntToType__0_methods(root_module, root_module['ns3::IntToType< 0 >'])
+    register_Ns3IntToType__1_methods(root_module, root_module['ns3::IntToType< 1 >'])
+    register_Ns3IntToType__2_methods(root_module, root_module['ns3::IntToType< 2 >'])
+    register_Ns3IntToType__3_methods(root_module, root_module['ns3::IntToType< 3 >'])
+    register_Ns3IntToType__4_methods(root_module, root_module['ns3::IntToType< 4 >'])
+    register_Ns3IntToType__5_methods(root_module, root_module['ns3::IntToType< 5 >'])
+    register_Ns3IntToType__6_methods(root_module, root_module['ns3::IntToType< 6 >'])
     register_Ns3Ipv4Address_methods(root_module, root_module['ns3::Ipv4Address'])
     register_Ns3Ipv4Mask_methods(root_module, root_module['ns3::Ipv4Mask'])
     register_Ns3Ipv6Address_methods(root_module, root_module['ns3::Ipv6Address'])
@@ -197,15 +282,23 @@ def register_methods(root_module):
     register_Ns3ObjectBase_methods(root_module, root_module['ns3::ObjectBase'])
     register_Ns3ObjectDeleter_methods(root_module, root_module['ns3::ObjectDeleter'])
     register_Ns3ObjectFactory_methods(root_module, root_module['ns3::ObjectFactory'])
+    register_Ns3ReadingsGeneratorHelper_methods(root_module, root_module['ns3::ReadingsGeneratorHelper'])
     register_Ns3SimpleRefCount__Ns3Object_Ns3ObjectBase_Ns3ObjectDeleter_methods(root_module, root_module['ns3::SimpleRefCount< ns3::Object, ns3::ObjectBase, ns3::ObjectDeleter >'])
     register_Ns3Simulator_methods(root_module, root_module['ns3::Simulator'])
     register_Ns3Tag_methods(root_module, root_module['ns3::Tag'])
     register_Ns3TagBuffer_methods(root_module, root_module['ns3::TagBuffer'])
+    register_Ns3Timer_methods(root_module, root_module['ns3::Timer'])
+    register_Ns3TimerImpl_methods(root_module, root_module['ns3::TimerImpl'])
     register_Ns3TypeId_methods(root_module, root_module['ns3::TypeId'])
     register_Ns3TypeIdAttributeInformation_methods(root_module, root_module['ns3::TypeId::AttributeInformation'])
     register_Ns3TypeIdTraceSourceInformation_methods(root_module, root_module['ns3::TypeId::TraceSourceInformation'])
     register_Ns3Empty_methods(root_module, root_module['ns3::empty'])
     register_Ns3Int64x64_t_methods(root_module, root_module['ns3::int64x64_t'])
+    register_Ns3Neighbor_reading_t_methods(root_module, root_module['ns3::neighbor_reading_t'])
+    register_Ns3Node_cluster_info_methods(root_module, root_module['ns3::node_cluster_info'])
+    register_Ns3Reading_t_methods(root_module, root_module['ns3::reading_t'])
+    register_Ns3Chunk_methods(root_module, root_module['ns3::Chunk'])
+    register_Ns3Header_methods(root_module, root_module['ns3::Header'])
     register_Ns3Object_methods(root_module, root_module['ns3::Object'])
     register_Ns3ObjectAggregateIterator_methods(root_module, root_module['ns3::Object::AggregateIterator'])
     register_Ns3SimpleRefCount__Ns3AttributeAccessor_Ns3Empty_Ns3DefaultDeleter__lt__ns3AttributeAccessor__gt___methods(root_module, root_module['ns3::SimpleRefCount< ns3::AttributeAccessor, ns3::empty, ns3::DefaultDeleter<ns3::AttributeAccessor> >'])
@@ -228,8 +321,12 @@ def register_methods(root_module):
     register_Ns3CallbackImplBase_methods(root_module, root_module['ns3::CallbackImplBase'])
     register_Ns3CallbackValue_methods(root_module, root_module['ns3::CallbackValue'])
     register_Ns3EmptyAttributeValue_methods(root_module, root_module['ns3::EmptyAttributeValue'])
+    register_Ns3EnumChecker_methods(root_module, root_module['ns3::EnumChecker'])
+    register_Ns3EnumValue_methods(root_module, root_module['ns3::EnumValue'])
     register_Ns3EventImpl_methods(root_module, root_module['ns3::EventImpl'])
+    register_Ns3FireflyBeaconHeader_methods(root_module, root_module['ns3::FireflyBeaconHeader'])
     register_Ns3FireflyClustering_methods(root_module, root_module['ns3::FireflyClustering'])
+    register_Ns3FireflyTypeHeader_methods(root_module, root_module['ns3::FireflyTypeHeader'])
     register_Ns3Ipv4AddressChecker_methods(root_module, root_module['ns3::Ipv4AddressChecker'])
     register_Ns3Ipv4AddressValue_methods(root_module, root_module['ns3::Ipv4AddressValue'])
     register_Ns3Ipv4MaskChecker_methods(root_module, root_module['ns3::Ipv4MaskChecker'])
@@ -410,6 +507,248 @@ def register_Ns3AttributeConstructionListItem_methods(root_module, cls):
     cls.add_instance_attribute('value', 'ns3::Ptr< ns3::AttributeValue >', is_const=False)
     return
 
+def register_Ns3Buffer_methods(root_module, cls):
+    ## buffer.h (module 'network'): ns3::Buffer::Buffer() [constructor]
+    cls.add_constructor([])
+    ## buffer.h (module 'network'): ns3::Buffer::Buffer(uint32_t dataSize) [constructor]
+    cls.add_constructor([param('uint32_t', 'dataSize')])
+    ## buffer.h (module 'network'): ns3::Buffer::Buffer(uint32_t dataSize, bool initialize) [constructor]
+    cls.add_constructor([param('uint32_t', 'dataSize'), param('bool', 'initialize')])
+    ## buffer.h (module 'network'): ns3::Buffer::Buffer(ns3::Buffer const & o) [copy constructor]
+    cls.add_constructor([param('ns3::Buffer const &', 'o')])
+    ## buffer.h (module 'network'): bool ns3::Buffer::AddAtEnd(uint32_t end) [member function]
+    cls.add_method('AddAtEnd', 
+                   'bool', 
+                   [param('uint32_t', 'end')])
+    ## buffer.h (module 'network'): void ns3::Buffer::AddAtEnd(ns3::Buffer const & o) [member function]
+    cls.add_method('AddAtEnd', 
+                   'void', 
+                   [param('ns3::Buffer const &', 'o')])
+    ## buffer.h (module 'network'): bool ns3::Buffer::AddAtStart(uint32_t start) [member function]
+    cls.add_method('AddAtStart', 
+                   'bool', 
+                   [param('uint32_t', 'start')])
+    ## buffer.h (module 'network'): ns3::Buffer::Iterator ns3::Buffer::Begin() const [member function]
+    cls.add_method('Begin', 
+                   'ns3::Buffer::Iterator', 
+                   [], 
+                   is_const=True)
+    ## buffer.h (module 'network'): void ns3::Buffer::CopyData(std::ostream * os, uint32_t size) const [member function]
+    cls.add_method('CopyData', 
+                   'void', 
+                   [param('std::ostream *', 'os'), param('uint32_t', 'size')], 
+                   is_const=True)
+    ## buffer.h (module 'network'): uint32_t ns3::Buffer::CopyData(uint8_t * buffer, uint32_t size) const [member function]
+    cls.add_method('CopyData', 
+                   'uint32_t', 
+                   [param('uint8_t *', 'buffer'), param('uint32_t', 'size')], 
+                   is_const=True)
+    ## buffer.h (module 'network'): ns3::Buffer ns3::Buffer::CreateFragment(uint32_t start, uint32_t length) const [member function]
+    cls.add_method('CreateFragment', 
+                   'ns3::Buffer', 
+                   [param('uint32_t', 'start'), param('uint32_t', 'length')], 
+                   is_const=True)
+    ## buffer.h (module 'network'): ns3::Buffer ns3::Buffer::CreateFullCopy() const [member function]
+    cls.add_method('CreateFullCopy', 
+                   'ns3::Buffer', 
+                   [], 
+                   is_const=True)
+    ## buffer.h (module 'network'): uint32_t ns3::Buffer::Deserialize(uint8_t const * buffer, uint32_t size) [member function]
+    cls.add_method('Deserialize', 
+                   'uint32_t', 
+                   [param('uint8_t const *', 'buffer'), param('uint32_t', 'size')])
+    ## buffer.h (module 'network'): ns3::Buffer::Iterator ns3::Buffer::End() const [member function]
+    cls.add_method('End', 
+                   'ns3::Buffer::Iterator', 
+                   [], 
+                   is_const=True)
+    ## buffer.h (module 'network'): int32_t ns3::Buffer::GetCurrentEndOffset() const [member function]
+    cls.add_method('GetCurrentEndOffset', 
+                   'int32_t', 
+                   [], 
+                   is_const=True)
+    ## buffer.h (module 'network'): int32_t ns3::Buffer::GetCurrentStartOffset() const [member function]
+    cls.add_method('GetCurrentStartOffset', 
+                   'int32_t', 
+                   [], 
+                   is_const=True)
+    ## buffer.h (module 'network'): uint32_t ns3::Buffer::GetSerializedSize() const [member function]
+    cls.add_method('GetSerializedSize', 
+                   'uint32_t', 
+                   [], 
+                   is_const=True)
+    ## buffer.h (module 'network'): uint32_t ns3::Buffer::GetSize() const [member function]
+    cls.add_method('GetSize', 
+                   'uint32_t', 
+                   [], 
+                   is_const=True)
+    ## buffer.h (module 'network'): uint8_t const * ns3::Buffer::PeekData() const [member function]
+    cls.add_method('PeekData', 
+                   'uint8_t const *', 
+                   [], 
+                   is_const=True)
+    ## buffer.h (module 'network'): void ns3::Buffer::RemoveAtEnd(uint32_t end) [member function]
+    cls.add_method('RemoveAtEnd', 
+                   'void', 
+                   [param('uint32_t', 'end')])
+    ## buffer.h (module 'network'): void ns3::Buffer::RemoveAtStart(uint32_t start) [member function]
+    cls.add_method('RemoveAtStart', 
+                   'void', 
+                   [param('uint32_t', 'start')])
+    ## buffer.h (module 'network'): uint32_t ns3::Buffer::Serialize(uint8_t * buffer, uint32_t maxSize) const [member function]
+    cls.add_method('Serialize', 
+                   'uint32_t', 
+                   [param('uint8_t *', 'buffer'), param('uint32_t', 'maxSize')], 
+                   is_const=True)
+    return
+
+def register_Ns3BufferIterator_methods(root_module, cls):
+    ## buffer.h (module 'network'): ns3::Buffer::Iterator::Iterator(ns3::Buffer::Iterator const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::Buffer::Iterator const &', 'arg0')])
+    ## buffer.h (module 'network'): ns3::Buffer::Iterator::Iterator() [constructor]
+    cls.add_constructor([])
+    ## buffer.h (module 'network'): uint16_t ns3::Buffer::Iterator::CalculateIpChecksum(uint16_t size) [member function]
+    cls.add_method('CalculateIpChecksum', 
+                   'uint16_t', 
+                   [param('uint16_t', 'size')])
+    ## buffer.h (module 'network'): uint16_t ns3::Buffer::Iterator::CalculateIpChecksum(uint16_t size, uint32_t initialChecksum) [member function]
+    cls.add_method('CalculateIpChecksum', 
+                   'uint16_t', 
+                   [param('uint16_t', 'size'), param('uint32_t', 'initialChecksum')])
+    ## buffer.h (module 'network'): uint32_t ns3::Buffer::Iterator::GetDistanceFrom(ns3::Buffer::Iterator const & o) const [member function]
+    cls.add_method('GetDistanceFrom', 
+                   'uint32_t', 
+                   [param('ns3::Buffer::Iterator const &', 'o')], 
+                   is_const=True)
+    ## buffer.h (module 'network'): uint32_t ns3::Buffer::Iterator::GetSize() const [member function]
+    cls.add_method('GetSize', 
+                   'uint32_t', 
+                   [], 
+                   is_const=True)
+    ## buffer.h (module 'network'): bool ns3::Buffer::Iterator::IsEnd() const [member function]
+    cls.add_method('IsEnd', 
+                   'bool', 
+                   [], 
+                   is_const=True)
+    ## buffer.h (module 'network'): bool ns3::Buffer::Iterator::IsStart() const [member function]
+    cls.add_method('IsStart', 
+                   'bool', 
+                   [], 
+                   is_const=True)
+    ## buffer.h (module 'network'): void ns3::Buffer::Iterator::Next() [member function]
+    cls.add_method('Next', 
+                   'void', 
+                   [])
+    ## buffer.h (module 'network'): void ns3::Buffer::Iterator::Next(uint32_t delta) [member function]
+    cls.add_method('Next', 
+                   'void', 
+                   [param('uint32_t', 'delta')])
+    ## buffer.h (module 'network'): void ns3::Buffer::Iterator::Prev() [member function]
+    cls.add_method('Prev', 
+                   'void', 
+                   [])
+    ## buffer.h (module 'network'): void ns3::Buffer::Iterator::Prev(uint32_t delta) [member function]
+    cls.add_method('Prev', 
+                   'void', 
+                   [param('uint32_t', 'delta')])
+    ## buffer.h (module 'network'): void ns3::Buffer::Iterator::Read(uint8_t * buffer, uint32_t size) [member function]
+    cls.add_method('Read', 
+                   'void', 
+                   [param('uint8_t *', 'buffer'), param('uint32_t', 'size')])
+    ## buffer.h (module 'network'): uint16_t ns3::Buffer::Iterator::ReadLsbtohU16() [member function]
+    cls.add_method('ReadLsbtohU16', 
+                   'uint16_t', 
+                   [])
+    ## buffer.h (module 'network'): uint32_t ns3::Buffer::Iterator::ReadLsbtohU32() [member function]
+    cls.add_method('ReadLsbtohU32', 
+                   'uint32_t', 
+                   [])
+    ## buffer.h (module 'network'): uint64_t ns3::Buffer::Iterator::ReadLsbtohU64() [member function]
+    cls.add_method('ReadLsbtohU64', 
+                   'uint64_t', 
+                   [])
+    ## buffer.h (module 'network'): uint16_t ns3::Buffer::Iterator::ReadNtohU16() [member function]
+    cls.add_method('ReadNtohU16', 
+                   'uint16_t', 
+                   [])
+    ## buffer.h (module 'network'): uint32_t ns3::Buffer::Iterator::ReadNtohU32() [member function]
+    cls.add_method('ReadNtohU32', 
+                   'uint32_t', 
+                   [])
+    ## buffer.h (module 'network'): uint64_t ns3::Buffer::Iterator::ReadNtohU64() [member function]
+    cls.add_method('ReadNtohU64', 
+                   'uint64_t', 
+                   [])
+    ## buffer.h (module 'network'): uint16_t ns3::Buffer::Iterator::ReadU16() [member function]
+    cls.add_method('ReadU16', 
+                   'uint16_t', 
+                   [])
+    ## buffer.h (module 'network'): uint32_t ns3::Buffer::Iterator::ReadU32() [member function]
+    cls.add_method('ReadU32', 
+                   'uint32_t', 
+                   [])
+    ## buffer.h (module 'network'): uint64_t ns3::Buffer::Iterator::ReadU64() [member function]
+    cls.add_method('ReadU64', 
+                   'uint64_t', 
+                   [])
+    ## buffer.h (module 'network'): uint8_t ns3::Buffer::Iterator::ReadU8() [member function]
+    cls.add_method('ReadU8', 
+                   'uint8_t', 
+                   [])
+    ## buffer.h (module 'network'): void ns3::Buffer::Iterator::Write(uint8_t const * buffer, uint32_t size) [member function]
+    cls.add_method('Write', 
+                   'void', 
+                   [param('uint8_t const *', 'buffer'), param('uint32_t', 'size')])
+    ## buffer.h (module 'network'): void ns3::Buffer::Iterator::Write(ns3::Buffer::Iterator start, ns3::Buffer::Iterator end) [member function]
+    cls.add_method('Write', 
+                   'void', 
+                   [param('ns3::Buffer::Iterator', 'start'), param('ns3::Buffer::Iterator', 'end')])
+    ## buffer.h (module 'network'): void ns3::Buffer::Iterator::WriteHtolsbU16(uint16_t data) [member function]
+    cls.add_method('WriteHtolsbU16', 
+                   'void', 
+                   [param('uint16_t', 'data')])
+    ## buffer.h (module 'network'): void ns3::Buffer::Iterator::WriteHtolsbU32(uint32_t data) [member function]
+    cls.add_method('WriteHtolsbU32', 
+                   'void', 
+                   [param('uint32_t', 'data')])
+    ## buffer.h (module 'network'): void ns3::Buffer::Iterator::WriteHtolsbU64(uint64_t data) [member function]
+    cls.add_method('WriteHtolsbU64', 
+                   'void', 
+                   [param('uint64_t', 'data')])
+    ## buffer.h (module 'network'): void ns3::Buffer::Iterator::WriteHtonU16(uint16_t data) [member function]
+    cls.add_method('WriteHtonU16', 
+                   'void', 
+                   [param('uint16_t', 'data')])
+    ## buffer.h (module 'network'): void ns3::Buffer::Iterator::WriteHtonU32(uint32_t data) [member function]
+    cls.add_method('WriteHtonU32', 
+                   'void', 
+                   [param('uint32_t', 'data')])
+    ## buffer.h (module 'network'): void ns3::Buffer::Iterator::WriteHtonU64(uint64_t data) [member function]
+    cls.add_method('WriteHtonU64', 
+                   'void', 
+                   [param('uint64_t', 'data')])
+    ## buffer.h (module 'network'): void ns3::Buffer::Iterator::WriteU16(uint16_t data) [member function]
+    cls.add_method('WriteU16', 
+                   'void', 
+                   [param('uint16_t', 'data')])
+    ## buffer.h (module 'network'): void ns3::Buffer::Iterator::WriteU32(uint32_t data) [member function]
+    cls.add_method('WriteU32', 
+                   'void', 
+                   [param('uint32_t', 'data')])
+    ## buffer.h (module 'network'): void ns3::Buffer::Iterator::WriteU64(uint64_t data) [member function]
+    cls.add_method('WriteU64', 
+                   'void', 
+                   [param('uint64_t', 'data')])
+    ## buffer.h (module 'network'): void ns3::Buffer::Iterator::WriteU8(uint8_t data) [member function]
+    cls.add_method('WriteU8', 
+                   'void', 
+                   [param('uint8_t', 'data')])
+    ## buffer.h (module 'network'): void ns3::Buffer::Iterator::WriteU8(uint8_t data, uint32_t len) [member function]
+    cls.add_method('WriteU8', 
+                   'void', 
+                   [param('uint8_t', 'data'), param('uint32_t', 'len')])
+    return
+
 def register_Ns3CallbackBase_methods(root_module, cls):
     ## callback.h (module 'core'): ns3::CallbackBase::CallbackBase(ns3::CallbackBase const & arg0) [copy constructor]
     cls.add_constructor([param('ns3::CallbackBase const &', 'arg0')])
@@ -428,6 +767,56 @@ def register_Ns3CallbackBase_methods(root_module, cls):
                    'std::string', 
                    [param('std::string const &', 'mangled')], 
                    is_static=True, visibility='protected')
+    return
+
+def register_Ns3ColorGradientHelper_methods(root_module, cls):
+    ## ColorGradientHelper.h (module 'firefly_dynamic_clustering'): ns3::ColorGradientHelper::ColorGradientHelper(ns3::ColorGradientHelper const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::ColorGradientHelper const &', 'arg0')])
+    ## ColorGradientHelper.h (module 'firefly_dynamic_clustering'): ns3::ColorGradientHelper::ColorGradientHelper() [constructor]
+    cls.add_constructor([])
+    ## ColorGradientHelper.h (module 'firefly_dynamic_clustering'): ns3::ColorGradientHelper::ColorGradientHelper(double arg0, double arg1) [constructor]
+    cls.add_constructor([param('double', 'arg0'), param('double', 'arg1')])
+    ## ColorGradientHelper.h (module 'firefly_dynamic_clustering'): ns3::ColorGradientHelper::ColorGradientHelper(double arg0, double arg1, int arg2, ns3::ColorHandler * args) [constructor]
+    cls.add_constructor([param('double', 'arg0'), param('double', 'arg1'), param('int', 'arg2'), param('ns3::ColorHandler *', 'args')])
+    ## ColorGradientHelper.h (module 'firefly_dynamic_clustering'): ns3::ColorHandler ns3::ColorGradientHelper::getColorOfReading(double arg0) [member function]
+    cls.add_method('getColorOfReading', 
+                   'ns3::ColorHandler', 
+                   [param('double', 'arg0')])
+    return
+
+def register_Ns3ColorHandler_methods(root_module, cls):
+    ## ColorHandler.h (module 'firefly_dynamic_clustering'): ns3::ColorHandler::ColorHandler(ns3::ColorHandler const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::ColorHandler const &', 'arg0')])
+    ## ColorHandler.h (module 'firefly_dynamic_clustering'): ns3::ColorHandler::ColorHandler(uint8_t r=0, uint8_t g=0, uint8_t b=0) [constructor]
+    cls.add_constructor([param('uint8_t', 'r', default_value='0'), param('uint8_t', 'g', default_value='0'), param('uint8_t', 'b', default_value='0')])
+    ## ColorHandler.h (module 'firefly_dynamic_clustering'): uint8_t ns3::ColorHandler::getBlue() [member function]
+    cls.add_method('getBlue', 
+                   'uint8_t', 
+                   [])
+    ## ColorHandler.h (module 'firefly_dynamic_clustering'): std::string ns3::ColorHandler::getColorHex() [member function]
+    cls.add_method('getColorHex', 
+                   'std::string', 
+                   [])
+    ## ColorHandler.h (module 'firefly_dynamic_clustering'): uint8_t ns3::ColorHandler::getGreen() [member function]
+    cls.add_method('getGreen', 
+                   'uint8_t', 
+                   [])
+    ## ColorHandler.h (module 'firefly_dynamic_clustering'): uint8_t ns3::ColorHandler::getRed() [member function]
+    cls.add_method('getRed', 
+                   'uint8_t', 
+                   [])
+    ## ColorHandler.h (module 'firefly_dynamic_clustering'): void ns3::ColorHandler::lerp(ns3::ColorHandler arg0, double arg1) [member function]
+    cls.add_method('lerp', 
+                   'void', 
+                   [param('ns3::ColorHandler', 'arg0'), param('double', 'arg1')])
+    ## ColorHandler.h (module 'firefly_dynamic_clustering'): ns3::ColorHandler ns3::ColorHandler::lerpNew(ns3::ColorHandler arg0, double arg1) [member function]
+    cls.add_method('lerpNew', 
+                   'ns3::ColorHandler', 
+                   [param('ns3::ColorHandler', 'arg0'), param('double', 'arg1')])
+    ## ColorHandler.h (module 'firefly_dynamic_clustering'): void ns3::ColorHandler::randomizeColor() [member function]
+    cls.add_method('randomizeColor', 
+                   'void', 
+                   [])
     return
 
 def register_Ns3EventId_methods(root_module, cls):
@@ -499,6 +888,122 @@ def register_Ns3FireflyClusteringHelper_methods(root_module, cls):
     cls.add_method('SetAttribute', 
                    'void', 
                    [param('std::string', 'name'), param('ns3::AttributeValue const &', 'value')])
+    ## firefly_dynamic_clustering-helper.h (module 'firefly_dynamic_clustering'): static void ns3::FireflyClusteringHelper::addReading(ns3::Ptr<ns3::Node> arg0, double arg1, double arg2) [member function]
+    cls.add_method('addReading', 
+                   'void', 
+                   [param('ns3::Ptr< ns3::Node >', 'arg0'), param('double', 'arg1'), param('double', 'arg2')], 
+                   is_static=True)
+    return
+
+def register_Ns3FireflyClusteringLogic_methods(root_module, cls):
+    ## FireflyClusteringLogic.h (module 'firefly_dynamic_clustering'): ns3::FireflyClusteringLogic::FireflyClusteringLogic(ns3::FireflyClusteringLogic const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::FireflyClusteringLogic const &', 'arg0')])
+    ## FireflyClusteringLogic.h (module 'firefly_dynamic_clustering'): ns3::FireflyClusteringLogic::FireflyClusteringLogic(uint32_t ndx=0, uint8_t max_c=3, bool khopca=false) [constructor]
+    cls.add_constructor([param('uint32_t', 'ndx', default_value='0'), param('uint8_t', 'max_c', default_value='3'), param('bool', 'khopca', default_value='false')])
+    ## FireflyClusteringLogic.h (module 'firefly_dynamic_clustering'): uint8_t ns3::FireflyClusteringLogic::getPoint() [member function]
+    cls.add_method('getPoint', 
+                   'uint8_t', 
+                   [])
+    ## FireflyClusteringLogic.h (module 'firefly_dynamic_clustering'): bool ns3::FireflyClusteringLogic::isClusterHead() [member function]
+    cls.add_method('isClusterHead', 
+                   'bool', 
+                   [])
+    ## FireflyClusteringLogic.h (module 'firefly_dynamic_clustering'): void ns3::FireflyClusteringLogic::registerNeighbor(uint32_t arg0, uint8_t arg1, uint8_t arg2) [member function]
+    cls.add_method('registerNeighbor', 
+                   'void', 
+                   [param('uint32_t', 'arg0'), param('uint8_t', 'arg1'), param('uint8_t', 'arg2')])
+    ## FireflyClusteringLogic.h (module 'firefly_dynamic_clustering'): void ns3::FireflyClusteringLogic::removeNeighbor(uint32_t arg0) [member function]
+    cls.add_method('removeNeighbor', 
+                   'void', 
+                   [param('uint32_t', 'arg0')])
+    ## FireflyClusteringLogic.h (module 'firefly_dynamic_clustering'): bool ns3::FireflyClusteringLogic::updatePoint(uint8_t arg0) [member function]
+    cls.add_method('updatePoint', 
+                   'bool', 
+                   [param('uint8_t', 'arg0')])
+    return
+
+def register_Ns3GlobalAnalysis_methods(root_module, cls):
+    ## GlobalAnalysis.h (module 'firefly_dynamic_clustering'): ns3::GlobalAnalysis::GlobalAnalysis(ns3::GlobalAnalysis const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::GlobalAnalysis const &', 'arg0')])
+    ## GlobalAnalysis.h (module 'firefly_dynamic_clustering'): ns3::GlobalAnalysis::GlobalAnalysis() [constructor]
+    cls.add_constructor([])
+    ## GlobalAnalysis.h (module 'firefly_dynamic_clustering'): void ns3::GlobalAnalysis::addEdgeFromTo(uint32_t arg0, uint32_t arg1) [member function]
+    cls.add_method('addEdgeFromTo', 
+                   'void', 
+                   [param('uint32_t', 'arg0'), param('uint32_t', 'arg1')])
+    ## GlobalAnalysis.h (module 'firefly_dynamic_clustering'): bool ns3::GlobalAnalysis::checkClusteringPointCosistencyAmongNeighbors(uint32_t arg0, uint32_t arg1, uint32_t arg2) [member function]
+    cls.add_method('checkClusteringPointCosistencyAmongNeighbors', 
+                   'bool', 
+                   [param('uint32_t', 'arg0'), param('uint32_t', 'arg1'), param('uint32_t', 'arg2')])
+    ## GlobalAnalysis.h (module 'firefly_dynamic_clustering'): void ns3::GlobalAnalysis::closeWholeSimulationMetricsAndFinish() [member function]
+    cls.add_method('closeWholeSimulationMetricsAndFinish', 
+                   'void', 
+                   [])
+    ## GlobalAnalysis.h (module 'firefly_dynamic_clustering'): void ns3::GlobalAnalysis::increaseNumberOfNodes(ns3::FireflyClustering * arg0) [member function]
+    cls.add_method('increaseNumberOfNodes', 
+                   'void', 
+                   [param('ns3::FireflyClustering *', 'arg0')])
+    ## GlobalAnalysis.h (module 'firefly_dynamic_clustering'): void ns3::GlobalAnalysis::nodeHasSentBeacon(uint32_t arg0) [member function]
+    cls.add_method('nodeHasSentBeacon', 
+                   'void', 
+                   [param('uint32_t', 'arg0')])
+    ## GlobalAnalysis.h (module 'firefly_dynamic_clustering'): void ns3::GlobalAnalysis::rmEdgeFromTo(uint32_t arg0, uint32_t arg1) [member function]
+    cls.add_method('rmEdgeFromTo', 
+                   'void', 
+                   [param('uint32_t', 'arg0'), param('uint32_t', 'arg1')])
+    ## GlobalAnalysis.h (module 'firefly_dynamic_clustering'): void ns3::GlobalAnalysis::startTimerPeriodicAfterWithInterval(double arg0, double arg1) [member function]
+    cls.add_method('startTimerPeriodicAfterWithInterval', 
+                   'void', 
+                   [param('double', 'arg0'), param('double', 'arg1')])
+    return
+
+def register_Ns3IntToType__0_methods(root_module, cls):
+    ## int-to-type.h (module 'core'): ns3::IntToType<0>::IntToType() [constructor]
+    cls.add_constructor([])
+    ## int-to-type.h (module 'core'): ns3::IntToType<0>::IntToType(ns3::IntToType<0> const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::IntToType< 0 > const &', 'arg0')])
+    return
+
+def register_Ns3IntToType__1_methods(root_module, cls):
+    ## int-to-type.h (module 'core'): ns3::IntToType<1>::IntToType() [constructor]
+    cls.add_constructor([])
+    ## int-to-type.h (module 'core'): ns3::IntToType<1>::IntToType(ns3::IntToType<1> const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::IntToType< 1 > const &', 'arg0')])
+    return
+
+def register_Ns3IntToType__2_methods(root_module, cls):
+    ## int-to-type.h (module 'core'): ns3::IntToType<2>::IntToType() [constructor]
+    cls.add_constructor([])
+    ## int-to-type.h (module 'core'): ns3::IntToType<2>::IntToType(ns3::IntToType<2> const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::IntToType< 2 > const &', 'arg0')])
+    return
+
+def register_Ns3IntToType__3_methods(root_module, cls):
+    ## int-to-type.h (module 'core'): ns3::IntToType<3>::IntToType() [constructor]
+    cls.add_constructor([])
+    ## int-to-type.h (module 'core'): ns3::IntToType<3>::IntToType(ns3::IntToType<3> const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::IntToType< 3 > const &', 'arg0')])
+    return
+
+def register_Ns3IntToType__4_methods(root_module, cls):
+    ## int-to-type.h (module 'core'): ns3::IntToType<4>::IntToType() [constructor]
+    cls.add_constructor([])
+    ## int-to-type.h (module 'core'): ns3::IntToType<4>::IntToType(ns3::IntToType<4> const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::IntToType< 4 > const &', 'arg0')])
+    return
+
+def register_Ns3IntToType__5_methods(root_module, cls):
+    ## int-to-type.h (module 'core'): ns3::IntToType<5>::IntToType() [constructor]
+    cls.add_constructor([])
+    ## int-to-type.h (module 'core'): ns3::IntToType<5>::IntToType(ns3::IntToType<5> const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::IntToType< 5 > const &', 'arg0')])
+    return
+
+def register_Ns3IntToType__6_methods(root_module, cls):
+    ## int-to-type.h (module 'core'): ns3::IntToType<6>::IntToType() [constructor]
+    cls.add_constructor([])
+    ## int-to-type.h (module 'core'): ns3::IntToType<6>::IntToType(ns3::IntToType<6> const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::IntToType< 6 > const &', 'arg0')])
     return
 
 def register_Ns3Ipv4Address_methods(root_module, cls):
@@ -1076,6 +1581,31 @@ def register_Ns3ObjectFactory_methods(root_module, cls):
                    [param('std::string', 'tid')])
     return
 
+def register_Ns3ReadingsGeneratorHelper_methods(root_module, cls):
+    ## ReadingsGeneratorHelper.h (module 'firefly_dynamic_clustering'): ns3::ReadingsGeneratorHelper::ReadingsGeneratorHelper(ns3::ReadingsGeneratorHelper const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::ReadingsGeneratorHelper const &', 'arg0')])
+    ## ReadingsGeneratorHelper.h (module 'firefly_dynamic_clustering'): ns3::ReadingsGeneratorHelper::ReadingsGeneratorHelper(double arg0, double arg1) [constructor]
+    cls.add_constructor([param('double', 'arg0'), param('double', 'arg1')])
+    ## ReadingsGeneratorHelper.h (module 'firefly_dynamic_clustering'): ns3::ReadingsGeneratorHelper::ReadingsGeneratorHelper() [constructor]
+    cls.add_constructor([])
+    ## ReadingsGeneratorHelper.h (module 'firefly_dynamic_clustering'): void ns3::ReadingsGeneratorHelper::__debug__generateReadings(int arg0, double arg1) [member function]
+    cls.add_method('__debug__generateReadings', 
+                   'void', 
+                   [param('int', 'arg0'), param('double', 'arg1')])
+    ## ReadingsGeneratorHelper.h (module 'firefly_dynamic_clustering'): double ns3::ReadingsGeneratorHelper::getReading(double arg0) [member function]
+    cls.add_method('getReading', 
+                   'double', 
+                   [param('double', 'arg0')])
+    ## ReadingsGeneratorHelper.h (module 'firefly_dynamic_clustering'): double ns3::ReadingsGeneratorHelper::normalizeReading(double arg0) [member function]
+    cls.add_method('normalizeReading', 
+                   'double', 
+                   [param('double', 'arg0')])
+    ## ReadingsGeneratorHelper.h (module 'firefly_dynamic_clustering'): void ns3::ReadingsGeneratorHelper::registerReading(double arg0, double arg1) [member function]
+    cls.add_method('registerReading', 
+                   'void', 
+                   [param('double', 'arg0'), param('double', 'arg1')])
+    return
+
 def register_Ns3SimpleRefCount__Ns3Object_Ns3ObjectBase_Ns3ObjectDeleter_methods(root_module, cls):
     ## simple-ref-count.h (module 'core'): ns3::SimpleRefCount<ns3::Object, ns3::ObjectBase, ns3::ObjectDeleter>::SimpleRefCount() [constructor]
     cls.add_constructor([])
@@ -1261,6 +1791,90 @@ def register_Ns3TagBuffer_methods(root_module, cls):
     cls.add_method('WriteU8', 
                    'void', 
                    [param('uint8_t', 'v')])
+    return
+
+def register_Ns3Timer_methods(root_module, cls):
+    ## timer.h (module 'core'): ns3::Timer::Timer(ns3::Timer const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::Timer const &', 'arg0')])
+    ## timer.h (module 'core'): ns3::Timer::Timer() [constructor]
+    cls.add_constructor([])
+    ## timer.h (module 'core'): ns3::Timer::Timer(ns3::Timer::DestroyPolicy destroyPolicy) [constructor]
+    cls.add_constructor([param('ns3::Timer::DestroyPolicy', 'destroyPolicy')])
+    ## timer.h (module 'core'): void ns3::Timer::Cancel() [member function]
+    cls.add_method('Cancel', 
+                   'void', 
+                   [])
+    ## timer.h (module 'core'): ns3::Time ns3::Timer::GetDelay() const [member function]
+    cls.add_method('GetDelay', 
+                   'ns3::Time', 
+                   [], 
+                   is_const=True)
+    ## timer.h (module 'core'): ns3::Time ns3::Timer::GetDelayLeft() const [member function]
+    cls.add_method('GetDelayLeft', 
+                   'ns3::Time', 
+                   [], 
+                   is_const=True)
+    ## timer.h (module 'core'): ns3::Timer::State ns3::Timer::GetState() const [member function]
+    cls.add_method('GetState', 
+                   'ns3::Timer::State', 
+                   [], 
+                   is_const=True)
+    ## timer.h (module 'core'): bool ns3::Timer::IsExpired() const [member function]
+    cls.add_method('IsExpired', 
+                   'bool', 
+                   [], 
+                   is_const=True)
+    ## timer.h (module 'core'): bool ns3::Timer::IsRunning() const [member function]
+    cls.add_method('IsRunning', 
+                   'bool', 
+                   [], 
+                   is_const=True)
+    ## timer.h (module 'core'): bool ns3::Timer::IsSuspended() const [member function]
+    cls.add_method('IsSuspended', 
+                   'bool', 
+                   [], 
+                   is_const=True)
+    ## timer.h (module 'core'): void ns3::Timer::Remove() [member function]
+    cls.add_method('Remove', 
+                   'void', 
+                   [])
+    ## timer.h (module 'core'): void ns3::Timer::Resume() [member function]
+    cls.add_method('Resume', 
+                   'void', 
+                   [])
+    ## timer.h (module 'core'): void ns3::Timer::Schedule() [member function]
+    cls.add_method('Schedule', 
+                   'void', 
+                   [])
+    ## timer.h (module 'core'): void ns3::Timer::Schedule(ns3::Time delay) [member function]
+    cls.add_method('Schedule', 
+                   'void', 
+                   [param('ns3::Time', 'delay')])
+    ## timer.h (module 'core'): void ns3::Timer::SetDelay(ns3::Time const & delay) [member function]
+    cls.add_method('SetDelay', 
+                   'void', 
+                   [param('ns3::Time const &', 'delay')])
+    ## timer.h (module 'core'): void ns3::Timer::Suspend() [member function]
+    cls.add_method('Suspend', 
+                   'void', 
+                   [])
+    return
+
+def register_Ns3TimerImpl_methods(root_module, cls):
+    ## timer-impl.h (module 'core'): ns3::TimerImpl::TimerImpl() [constructor]
+    cls.add_constructor([])
+    ## timer-impl.h (module 'core'): ns3::TimerImpl::TimerImpl(ns3::TimerImpl const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::TimerImpl const &', 'arg0')])
+    ## timer-impl.h (module 'core'): void ns3::TimerImpl::Invoke() [member function]
+    cls.add_method('Invoke', 
+                   'void', 
+                   [], 
+                   is_pure_virtual=True, is_virtual=True)
+    ## timer-impl.h (module 'core'): ns3::EventId ns3::TimerImpl::Schedule(ns3::Time const & delay) [member function]
+    cls.add_method('Schedule', 
+                   'ns3::EventId', 
+                   [param('ns3::Time const &', 'delay')], 
+                   is_pure_virtual=True, is_virtual=True)
     return
 
 def register_Ns3TypeId_methods(root_module, cls):
@@ -1549,6 +2163,96 @@ def register_Ns3Int64x64_t_methods(root_module, cls):
     cls.add_method('MulByInvert', 
                    'void', 
                    [param('ns3::int64x64_t const &', 'o')])
+    return
+
+def register_Ns3Neighbor_reading_t_methods(root_module, cls):
+    ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): ns3::neighbor_reading_t::neighbor_reading_t() [constructor]
+    cls.add_constructor([])
+    ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): ns3::neighbor_reading_t::neighbor_reading_t(ns3::neighbor_reading_t const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::neighbor_reading_t const &', 'arg0')])
+    ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): ns3::neighbor_reading_t::aggregated_reding [variable]
+    cls.add_instance_attribute('aggregated_reding', 'double', is_const=False)
+    ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): ns3::neighbor_reading_t::individual_reading [variable]
+    cls.add_instance_attribute('individual_reading', 'double', is_const=False)
+    ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): ns3::neighbor_reading_t::number_of_aggregated_readings [variable]
+    cls.add_instance_attribute('number_of_aggregated_readings', 'uint8_t', is_const=False)
+    return
+
+def register_Ns3Node_cluster_info_methods(root_module, cls):
+    ## FireflyClusteringLogic.h (module 'firefly_dynamic_clustering'): ns3::node_cluster_info::node_cluster_info() [constructor]
+    cls.add_constructor([])
+    ## FireflyClusteringLogic.h (module 'firefly_dynamic_clustering'): ns3::node_cluster_info::node_cluster_info(ns3::node_cluster_info const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::node_cluster_info const &', 'arg0')])
+    ## FireflyClusteringLogic.h (module 'firefly_dynamic_clustering'): ns3::node_cluster_info::numberOfNeighbors [variable]
+    cls.add_instance_attribute('numberOfNeighbors', 'uint8_t', is_const=False)
+    ## FireflyClusteringLogic.h (module 'firefly_dynamic_clustering'): ns3::node_cluster_info::points [variable]
+    cls.add_instance_attribute('points', 'uint8_t', is_const=False)
+    return
+
+def register_Ns3Reading_t_methods(root_module, cls):
+    ## ReadingsGeneratorHelper.h (module 'firefly_dynamic_clustering'): ns3::reading_t::reading_t() [constructor]
+    cls.add_constructor([])
+    ## ReadingsGeneratorHelper.h (module 'firefly_dynamic_clustering'): ns3::reading_t::reading_t(ns3::reading_t const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::reading_t const &', 'arg0')])
+    ## ReadingsGeneratorHelper.h (module 'firefly_dynamic_clustering'): ns3::reading_t::time_ [variable]
+    cls.add_instance_attribute('time_', 'double', is_const=False)
+    ## ReadingsGeneratorHelper.h (module 'firefly_dynamic_clustering'): ns3::reading_t::value_ [variable]
+    cls.add_instance_attribute('value_', 'double', is_const=False)
+    return
+
+def register_Ns3Chunk_methods(root_module, cls):
+    ## chunk.h (module 'network'): ns3::Chunk::Chunk() [constructor]
+    cls.add_constructor([])
+    ## chunk.h (module 'network'): ns3::Chunk::Chunk(ns3::Chunk const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::Chunk const &', 'arg0')])
+    ## chunk.h (module 'network'): uint32_t ns3::Chunk::Deserialize(ns3::Buffer::Iterator start) [member function]
+    cls.add_method('Deserialize', 
+                   'uint32_t', 
+                   [param('ns3::Buffer::Iterator', 'start')], 
+                   is_pure_virtual=True, is_virtual=True)
+    ## chunk.h (module 'network'): static ns3::TypeId ns3::Chunk::GetTypeId() [member function]
+    cls.add_method('GetTypeId', 
+                   'ns3::TypeId', 
+                   [], 
+                   is_static=True)
+    ## chunk.h (module 'network'): void ns3::Chunk::Print(std::ostream & os) const [member function]
+    cls.add_method('Print', 
+                   'void', 
+                   [param('std::ostream &', 'os')], 
+                   is_pure_virtual=True, is_const=True, is_virtual=True)
+    return
+
+def register_Ns3Header_methods(root_module, cls):
+    cls.add_output_stream_operator()
+    ## header.h (module 'network'): ns3::Header::Header() [constructor]
+    cls.add_constructor([])
+    ## header.h (module 'network'): ns3::Header::Header(ns3::Header const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::Header const &', 'arg0')])
+    ## header.h (module 'network'): uint32_t ns3::Header::Deserialize(ns3::Buffer::Iterator start) [member function]
+    cls.add_method('Deserialize', 
+                   'uint32_t', 
+                   [param('ns3::Buffer::Iterator', 'start')], 
+                   is_pure_virtual=True, is_virtual=True)
+    ## header.h (module 'network'): uint32_t ns3::Header::GetSerializedSize() const [member function]
+    cls.add_method('GetSerializedSize', 
+                   'uint32_t', 
+                   [], 
+                   is_pure_virtual=True, is_const=True, is_virtual=True)
+    ## header.h (module 'network'): static ns3::TypeId ns3::Header::GetTypeId() [member function]
+    cls.add_method('GetTypeId', 
+                   'ns3::TypeId', 
+                   [], 
+                   is_static=True)
+    ## header.h (module 'network'): void ns3::Header::Print(std::ostream & os) const [member function]
+    cls.add_method('Print', 
+                   'void', 
+                   [param('std::ostream &', 'os')], 
+                   is_pure_virtual=True, is_const=True, is_virtual=True)
+    ## header.h (module 'network'): void ns3::Header::Serialize(ns3::Buffer::Iterator start) const [member function]
+    cls.add_method('Serialize', 
+                   'void', 
+                   [param('ns3::Buffer::Iterator', 'start')], 
+                   is_pure_virtual=True, is_const=True, is_virtual=True)
     return
 
 def register_Ns3Object_methods(root_module, cls):
@@ -2460,6 +3164,84 @@ def register_Ns3EmptyAttributeValue_methods(root_module, cls):
                    is_const=True, visibility='private', is_virtual=True)
     return
 
+def register_Ns3EnumChecker_methods(root_module, cls):
+    ## enum.h (module 'core'): ns3::EnumChecker::EnumChecker(ns3::EnumChecker const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::EnumChecker const &', 'arg0')])
+    ## enum.h (module 'core'): ns3::EnumChecker::EnumChecker() [constructor]
+    cls.add_constructor([])
+    ## enum.h (module 'core'): void ns3::EnumChecker::Add(int v, std::string name) [member function]
+    cls.add_method('Add', 
+                   'void', 
+                   [param('int', 'v'), param('std::string', 'name')])
+    ## enum.h (module 'core'): void ns3::EnumChecker::AddDefault(int v, std::string name) [member function]
+    cls.add_method('AddDefault', 
+                   'void', 
+                   [param('int', 'v'), param('std::string', 'name')])
+    ## enum.h (module 'core'): bool ns3::EnumChecker::Check(ns3::AttributeValue const & value) const [member function]
+    cls.add_method('Check', 
+                   'bool', 
+                   [param('ns3::AttributeValue const &', 'value')], 
+                   is_const=True, is_virtual=True)
+    ## enum.h (module 'core'): bool ns3::EnumChecker::Copy(ns3::AttributeValue const & src, ns3::AttributeValue & dst) const [member function]
+    cls.add_method('Copy', 
+                   'bool', 
+                   [param('ns3::AttributeValue const &', 'src'), param('ns3::AttributeValue &', 'dst')], 
+                   is_const=True, is_virtual=True)
+    ## enum.h (module 'core'): ns3::Ptr<ns3::AttributeValue> ns3::EnumChecker::Create() const [member function]
+    cls.add_method('Create', 
+                   'ns3::Ptr< ns3::AttributeValue >', 
+                   [], 
+                   is_const=True, is_virtual=True)
+    ## enum.h (module 'core'): std::string ns3::EnumChecker::GetUnderlyingTypeInformation() const [member function]
+    cls.add_method('GetUnderlyingTypeInformation', 
+                   'std::string', 
+                   [], 
+                   is_const=True, is_virtual=True)
+    ## enum.h (module 'core'): std::string ns3::EnumChecker::GetValueTypeName() const [member function]
+    cls.add_method('GetValueTypeName', 
+                   'std::string', 
+                   [], 
+                   is_const=True, is_virtual=True)
+    ## enum.h (module 'core'): bool ns3::EnumChecker::HasUnderlyingTypeInformation() const [member function]
+    cls.add_method('HasUnderlyingTypeInformation', 
+                   'bool', 
+                   [], 
+                   is_const=True, is_virtual=True)
+    return
+
+def register_Ns3EnumValue_methods(root_module, cls):
+    ## enum.h (module 'core'): ns3::EnumValue::EnumValue(ns3::EnumValue const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::EnumValue const &', 'arg0')])
+    ## enum.h (module 'core'): ns3::EnumValue::EnumValue() [constructor]
+    cls.add_constructor([])
+    ## enum.h (module 'core'): ns3::EnumValue::EnumValue(int v) [constructor]
+    cls.add_constructor([param('int', 'v')])
+    ## enum.h (module 'core'): ns3::Ptr<ns3::AttributeValue> ns3::EnumValue::Copy() const [member function]
+    cls.add_method('Copy', 
+                   'ns3::Ptr< ns3::AttributeValue >', 
+                   [], 
+                   is_const=True, is_virtual=True)
+    ## enum.h (module 'core'): bool ns3::EnumValue::DeserializeFromString(std::string value, ns3::Ptr<ns3::AttributeChecker const> checker) [member function]
+    cls.add_method('DeserializeFromString', 
+                   'bool', 
+                   [param('std::string', 'value'), param('ns3::Ptr< ns3::AttributeChecker const >', 'checker')], 
+                   is_virtual=True)
+    ## enum.h (module 'core'): int ns3::EnumValue::Get() const [member function]
+    cls.add_method('Get', 
+                   'int', 
+                   [], 
+                   is_const=True)
+    ## enum.h (module 'core'): std::string ns3::EnumValue::SerializeToString(ns3::Ptr<ns3::AttributeChecker const> checker) const [member function]
+    cls.add_method('SerializeToString', 
+                   'std::string', 
+                   [param('ns3::Ptr< ns3::AttributeChecker const >', 'checker')], 
+                   is_const=True, is_virtual=True)
+    ## enum.h (module 'core'): void ns3::EnumValue::Set(int v) [member function]
+    cls.add_method('Set', 
+                   'void', 
+                   [param('int', 'v')])
+    return
+
 def register_Ns3EventImpl_methods(root_module, cls):
     ## event-impl.h (module 'core'): ns3::EventImpl::EventImpl(ns3::EventImpl const & arg0) [copy constructor]
     cls.add_constructor([param('ns3::EventImpl const &', 'arg0')])
@@ -2484,16 +3266,127 @@ def register_Ns3EventImpl_methods(root_module, cls):
                    is_pure_virtual=True, visibility='protected', is_virtual=True)
     return
 
+def register_Ns3FireflyBeaconHeader_methods(root_module, cls):
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): ns3::FireflyBeaconHeader::FireflyBeaconHeader(ns3::FireflyBeaconHeader const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::FireflyBeaconHeader const &', 'arg0')])
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): ns3::FireflyBeaconHeader::FireflyBeaconHeader(uint32_t src=0, double individual_reading=0, double aggregated_reading=0, uint8_t number_of_aggregated=0, uint8_t point=0) [constructor]
+    cls.add_constructor([param('uint32_t', 'src', default_value='0'), param('double', 'individual_reading', default_value='0'), param('double', 'aggregated_reading', default_value='0'), param('uint8_t', 'number_of_aggregated', default_value='0'), param('uint8_t', 'point', default_value='0')])
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): uint32_t ns3::FireflyBeaconHeader::Deserialize(ns3::Buffer::Iterator start) [member function]
+    cls.add_method('Deserialize', 
+                   'uint32_t', 
+                   [param('ns3::Buffer::Iterator', 'start')], 
+                   is_virtual=True)
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): ns3::TypeId ns3::FireflyBeaconHeader::GetInstanceTypeId() const [member function]
+    cls.add_method('GetInstanceTypeId', 
+                   'ns3::TypeId', 
+                   [], 
+                   is_const=True, is_virtual=True)
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): uint32_t ns3::FireflyBeaconHeader::GetSerializedSize() const [member function]
+    cls.add_method('GetSerializedSize', 
+                   'uint32_t', 
+                   [], 
+                   is_const=True, is_virtual=True)
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): static ns3::TypeId ns3::FireflyBeaconHeader::GetTypeId() [member function]
+    cls.add_method('GetTypeId', 
+                   'ns3::TypeId', 
+                   [], 
+                   is_static=True)
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): void ns3::FireflyBeaconHeader::Print(std::ostream & os) const [member function]
+    cls.add_method('Print', 
+                   'void', 
+                   [param('std::ostream &', 'os')], 
+                   is_const=True, is_virtual=True)
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): void ns3::FireflyBeaconHeader::Serialize(ns3::Buffer::Iterator start) const [member function]
+    cls.add_method('Serialize', 
+                   'void', 
+                   [param('ns3::Buffer::Iterator', 'start')], 
+                   is_const=True, is_virtual=True)
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): double ns3::FireflyBeaconHeader::getAggregatedReading() [member function]
+    cls.add_method('getAggregatedReading', 
+                   'double', 
+                   [])
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): uint8_t ns3::FireflyBeaconHeader::getClusteringPoint() [member function]
+    cls.add_method('getClusteringPoint', 
+                   'uint8_t', 
+                   [])
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): double ns3::FireflyBeaconHeader::getIndividualReading() [member function]
+    cls.add_method('getIndividualReading', 
+                   'double', 
+                   [])
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): uint8_t ns3::FireflyBeaconHeader::getNumberOfReadings() [member function]
+    cls.add_method('getNumberOfReadings', 
+                   'uint8_t', 
+                   [])
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): uint32_t ns3::FireflyBeaconHeader::getSrc() [member function]
+    cls.add_method('getSrc', 
+                   'uint32_t', 
+                   [])
+    return
+
 def register_Ns3FireflyClustering_methods(root_module, cls):
     ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): ns3::FireflyClustering::FireflyClustering(ns3::FireflyClustering const & arg0) [copy constructor]
     cls.add_constructor([param('ns3::FireflyClustering const &', 'arg0')])
     ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): ns3::FireflyClustering::FireflyClustering() [constructor]
     cls.add_constructor([])
+    ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): void ns3::FireflyClustering::AddReading(double arg0, double arg1) [member function]
+    cls.add_method('AddReading', 
+                   'void', 
+                   [param('double', 'arg0'), param('double', 'arg1')])
     ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): static ns3::TypeId ns3::FireflyClustering::GetTypeId() [member function]
     cls.add_method('GetTypeId', 
                    'ns3::TypeId', 
                    [], 
                    is_static=True)
+    ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): static bool ns3::FireflyClustering::PyVizLocked() [member function]
+    cls.add_method('PyVizLocked', 
+                   'bool', 
+                   [], 
+                   is_static=True)
+    ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): std::string ns3::FireflyClustering::getColor() [member function]
+    cls.add_method('getColor', 
+                   'std::string', 
+                   [])
+    ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): static int32_t ns3::FireflyClustering::getEdgesToBeRemoved_begin() [member function]
+    cls.add_method('getEdgesToBeRemoved_begin', 
+                   'int32_t', 
+                   [], 
+                   is_static=True)
+    ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): static int32_t ns3::FireflyClustering::getEdgesToBeRemoved_end() [member function]
+    cls.add_method('getEdgesToBeRemoved_end', 
+                   'int32_t', 
+                   [], 
+                   is_static=True)
+    ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): std::string ns3::FireflyClustering::getLabel() [member function]
+    cls.add_method('getLabel', 
+                   'std::string', 
+                   [])
+    ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): static int32_t ns3::FireflyClustering::getNewEdges_begin() [member function]
+    cls.add_method('getNewEdges_begin', 
+                   'int32_t', 
+                   [], 
+                   is_static=True)
+    ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): static int32_t ns3::FireflyClustering::getNewEdges_end() [member function]
+    cls.add_method('getNewEdges_end', 
+                   'int32_t', 
+                   [], 
+                   is_static=True)
+    ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): double ns3::FireflyClustering::getReading() [member function]
+    cls.add_method('getReading', 
+                   'double', 
+                   [])
+    ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): static void ns3::FireflyClustering::initializeReadingGUIDependencies(ns3::type_of_readings arg0) [member function]
+    cls.add_method('initializeReadingGUIDependencies', 
+                   'void', 
+                   [param('ns3::type_of_readings', 'arg0')], 
+                   is_static=True)
+    ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): ns3::FireflyClustering::MAX_READING [variable]
+    cls.add_static_attribute('MAX_READING', 'double', is_const=False)
+    ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): ns3::FireflyClustering::MIN_READING [variable]
+    cls.add_static_attribute('MIN_READING', 'double', is_const=False)
+    ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): ns3::FireflyClustering::colorHelper [variable]
+    cls.add_static_attribute('colorHelper', 'ns3::ColorGradientHelper', is_const=False)
+    ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): ns3::FireflyClustering::fcl [variable]
+    cls.add_instance_attribute('fcl', 'ns3::FireflyClusteringLogic', is_const=False)
     ## firefly_dynamic_clustering.h (module 'firefly_dynamic_clustering'): void ns3::FireflyClustering::DoDispose() [member function]
     cls.add_method('DoDispose', 
                    'void', 
@@ -2509,6 +3402,56 @@ def register_Ns3FireflyClustering_methods(root_module, cls):
                    'void', 
                    [], 
                    visibility='private', is_virtual=True)
+    return
+
+def register_Ns3FireflyTypeHeader_methods(root_module, cls):
+    cls.add_binary_comparison_operator('==')
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): ns3::FireflyTypeHeader::FireflyTypeHeader(ns3::FireflyTypeHeader const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::FireflyTypeHeader const &', 'arg0')])
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): ns3::FireflyTypeHeader::FireflyTypeHeader(ns3::MessageType t) [constructor]
+    cls.add_constructor([param('ns3::MessageType', 't')])
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): ns3::FireflyTypeHeader::FireflyTypeHeader() [constructor]
+    cls.add_constructor([])
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): uint32_t ns3::FireflyTypeHeader::Deserialize(ns3::Buffer::Iterator start) [member function]
+    cls.add_method('Deserialize', 
+                   'uint32_t', 
+                   [param('ns3::Buffer::Iterator', 'start')], 
+                   is_virtual=True)
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): ns3::MessageType ns3::FireflyTypeHeader::Get() const [member function]
+    cls.add_method('Get', 
+                   'ns3::MessageType', 
+                   [], 
+                   is_const=True)
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): ns3::TypeId ns3::FireflyTypeHeader::GetInstanceTypeId() const [member function]
+    cls.add_method('GetInstanceTypeId', 
+                   'ns3::TypeId', 
+                   [], 
+                   is_const=True, is_virtual=True)
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): uint32_t ns3::FireflyTypeHeader::GetSerializedSize() const [member function]
+    cls.add_method('GetSerializedSize', 
+                   'uint32_t', 
+                   [], 
+                   is_const=True, is_virtual=True)
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): static ns3::TypeId ns3::FireflyTypeHeader::GetTypeId() [member function]
+    cls.add_method('GetTypeId', 
+                   'ns3::TypeId', 
+                   [], 
+                   is_static=True)
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): bool ns3::FireflyTypeHeader::IsValid() const [member function]
+    cls.add_method('IsValid', 
+                   'bool', 
+                   [], 
+                   is_const=True)
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): void ns3::FireflyTypeHeader::Print(std::ostream & os) const [member function]
+    cls.add_method('Print', 
+                   'void', 
+                   [param('std::ostream &', 'os')], 
+                   is_const=True, is_virtual=True)
+    ## firefly_dynamic_clustering-header.h (module 'firefly_dynamic_clustering'): void ns3::FireflyTypeHeader::Serialize(ns3::Buffer::Iterator start) const [member function]
+    cls.add_method('Serialize', 
+                   'void', 
+                   [param('ns3::Buffer::Iterator', 'start')], 
+                   is_const=True, is_virtual=True)
     return
 
 def register_Ns3Ipv4AddressChecker_methods(root_module, cls):
@@ -3048,6 +3991,10 @@ def register_Ns3AddressValue_methods(root_module, cls):
 
 def register_functions(root_module):
     module = root_module
+    ## ReadingsGeneratorHelper.h (module 'firefly_dynamic_clustering'): extern double ns3::lerp(double arg0, double arg1, double arg2) [free function]
+    module.add_function('lerp', 
+                        'double', 
+                        [param('double', 'arg0'), param('double', 'arg1'), param('double', 'arg2')])
     register_functions_ns3_FatalImpl(module.get_submodule('FatalImpl'), root_module)
     return
 
