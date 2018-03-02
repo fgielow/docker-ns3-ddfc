@@ -74,4 +74,4 @@ With the dependencies met, simply clone the repository and build it
 
 If you wish to compile the container image locally instead of fetch from Docker Hub, you can simply:
 
-    make building
+    make build
