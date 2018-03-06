@@ -10,6 +10,7 @@ run:
 setup-xhost:
 	xhost + $(IP)
 	xhost + 127.0.0.1
+	xhost +SI:localuser:root
 
 build: Dockerfile ddfc-source.tar.bz2
 	docker build -t $(NAME) .
